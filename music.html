@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8" />
+		<title>大富翁小學堂</title>
+	</head>
+
+	<body>
+		<audio id="bgMusic" autoplay="autoplay" loop="loop" >
+			<source  src="media/voice/bgm.mp3" type="audio/mp3">
+			<source  src="media/voice/bgm.ogg" type="audio/ogg">
+		</audio>
+		<input type="text" value="hahahahaha" id="test">
+	</body>
+<script>
+var a=1;
+function mute_set(tf)
+{
+	var voice=document.getElementById("bgMusic");
+	voice.muted=tf;
+}
+function volume_set(num)
+{
+	var voice=document.getElementById("bgMusic");
+	voice.volume=num*0.005;
+}
+window.onload=function()
+{
+	volume_set(50);
+}
+</script>
+</html>

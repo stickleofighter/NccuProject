@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大富翁小學堂</title>
+<style>
+body {
+		background-attachment:fixed;
+		margin: 0px auto;
+    }
+.cv
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#backgroundimg
+{
+	 z-index: 1;
+}
+#buttonimg
+{
+	 z-index: 2;
+}
+#backgroundimg_u
+{
+	 z-index: 3;
+}
+#buttonimg_u
+{
+	 z-index: 4;
+}
+#touchfeel
+{
+	 z-index: 10;
+}
+</style>
+</head>
+
+<body>
+<div style="position: relative;">
+ <canvas id="backgroundimg_u" class="cv" width="1500" height="843"><p>�A�a�s���������F�C���ڰڰڰڰ�</p>���� </canvas>
+  <canvas id="buttonimg_u" class="cv" width="1500" height="843"> </canvas>
+   <canvas id="backgroundimg" class="cv" width="1500" height="843"> </canvas>
+  <canvas id="buttonimg" class="cv" width="1500" height="843"> </canvas>
+  <canvas id="touchfeel" class="cv" width="1500" height="843"> </canvas>
+   </div>
+   <audio id="bgMusic">
+    <source  src="001.mp3" type="audio/mp3">
+    <source  src="001.ogg" type="audio/ogg">
+</audio>
+<audio id="bgSound">
+    <source  src="001.mp3" type="audio/mp3">
+    <source  src="001.ogg" type="audio/ogg">
+</audio>
+</body>
+</html>
+<script>
+var ctouchcheck=document.getElementById("touchfeel");
+var ctcrk =ctouchcheck.getContext("2d");
+var cbackground=document.getElementById("backgroundimg");
+var cbg =cbackground.getContext("2d");
+var cbutton=document.getElementById("buttonimg");
+var cbtn =cbutton.getContext("2d");
+var cbackground_u=document.getElementById("backgroundimg_u");
+var cbg_u =cbackground_u.getContext("2d");
+var cbutton_u=document.getElementById("buttonimg_u");
+var cbtn_u =cbutton_u.getContext("2d");
+
+
+var bimg=new Image()
+bimg.src="../pic/main_page/start_page.png";
+var MOUSE=
+{
+	mx:0,
+	my:0,
+	click_check:false,
+	getmousexy:function ()
+	{
+		this.mx=event.clientX;
+		this.my=event.clientY;
+	}
+};
+var BTNIMG=
+{
+	bl:new Array(),
+	bw:new Array(),
+	bx1:new Array(),
+	by1:new Array(),
+	bx2:new Array(),
+	by2:new Array(),
+	btnimg:new Array(),
+	btninfor:function()
+	{
+		this.bl[1]=304;//334 //274
+		this.bw[1]=88;//96//80
+		this.bx1[1]=680;
+		this.bx2[1]=1050;
+		this.by1[1]=570;
+		this.by2[1]=700;
+		this.bl[2]=this.bl[1]*1.1;//334 //274
+		this.bw[2]=this.bw[1]*1.1;//96//80
+		this.bx1[2]=this.bx1[1]-(this.bl[2]-this.bl[1])/2;
+		this.bx2[2]=this.bx2[1]-(this.bl[2]-this.bl[1])/2;
+		this.by1[2]=this.by1[1]-(this.bw[2]-this.bw[1])/2;
+		this.by2[2]=this.by2[1]-(this.bw[2]-this.bw[1])/2;
+		this.bl[0]=this.bl[1]*0.9;//334 //274
+		this.bw[0]=this.bw[1]*0.9;//96//80
+		this.bx1[0]=this.bx1[1]+(this.bl[1]-this.bl[0])/2;
+		this.bx2[0]=this.bx2[1]+(this.bl[1]-this.bl[0])/2;
+		this.by1[0]=this.by1[1]+(this.bw[1]-this.bw[0])/2;
+		this.by2[0]=this.by2[1]+(this.bw[1]-this.bw[0])/2;
+	},
+	btndraw:function(check,mouse_che,bs)
+	{
+		switch(check)
+		{
+			case 1:
+				cbtn.clearRect(this.bx1[2],this.by1[2],this.bl[2],this.bw[2]);
+				cbtn.drawImage(this.btnimg[mouse_che][0],this.bx1[bs],this.by1[bs],this.bl[bs],this.bw[bs]);
+				break;
+			case 2:
+				cbtn.clearRect(this.bx2[2],this.by1[2],this.bl[2],this.bw[2]);
+				cbtn.drawImage(this.btnimg[mouse_che][1],this.bx2[bs],this.by1[bs],this.bl[bs],this.bw[bs]);
+				break;
+			case 3:
+				cbtn.clearRect(this.bx1[2],this.by2[2],this.bl[2],this.bw[2]);
+				cbtn.drawImage(this.btnimg[mouse_che][2],this.bx1[bs],this.by2[bs],this.bl[bs],this.bw[bs]);
+				break;
+			case 4:
+				cbtn.clearRect(this.bx2[2],this.by2[2],this.bl[2],this.bw[2]);
+				cbtn.drawImage(this.btnimg[mouse_che][3],this.bx2[bs],this.by2[bs],this.bl[bs],this.bw[bs]);
+				break;
+		}
+	}
+};
+var OLD_LOAD=
+{
+	bg:new Image(),
+	img:new Array(),
+	bx:new Array(),
+	by:0,
+	bw:0,
+	bh:0,
+	check:false,
+	inforinput:function()
+	{
+		OLD_LOAD.bw=290;
+		OLD_LOAD.bh=98;
+		OLD_LOAD.by=500;
+		OLD_LOAD.bx[0]=440;
+		OLD_LOAD.bx[1]=760;
+	},
+	bgdraw:function()
+	{
+		cbg_u.clearRect(0,0,1500,850);
+		cbg_u.drawImage(OLD_LOAD.bg,0,0,1500,850);
+	},
+	btndraw:function(kind,check)
+	{
+		var xx=new Array(),yy=new Array(),ww=new Array(),hh=new Array();
+		xx[1]=OLD_LOAD.bx[kind];
+		yy[1]=OLD_LOAD.by;
+		ww[1]=OLD_LOAD.bw;
+		hh[1]=OLD_LOAD.bh;
+		ww[2]=OLD_LOAD.bw*1.1;
+		hh[2]=OLD_LOAD.bh*1.1;
+		ww[0]=OLD_LOAD.bw*0.9;
+		hh[0]=OLD_LOAD.bh*0.9;
+		xx[2]=xx[1]-(ww[2]-ww[1])/2;
+		xx[0]=xx[1]+(ww[1]-ww[0])/2;
+		yy[2]=yy[1]-(hh[2]-hh[1])/2;
+		yy[0]=yy[1]+(hh[1]-hh[0])/2;
+		
+		cbtn_u.clearRect(xx[2],yy[2],ww[2],hh[2]);
+		cbtn_u.drawImage(OLD_LOAD.img[kind],xx[check],yy[check],ww[check],hh[check]);
+	},
+	oldloads:function()
+	{
+		OLD_LOAD.inforinput();
+		OLD_LOAD.bgdraw();
+		OLD_LOAD.btndraw(0,1);
+		OLD_LOAD.btndraw(1,1);
+	}
+};
+var SETPAGE=
+{
+	check1:1,
+	check2:1,
+	volumex:50
+};
+var VOICEPLAY=
+{
+	played:false,
+	pushed:false,
+	playvoice:function(kind,msg)
+	{
+		var voice=document.getElementById("bgSound");
+		if(SETPAGE.check2==0) voice.muted=true;
+		else voice.muted=false;
+		voice.volume=SETPAGE.volumex/100;
+		switch(kind)
+		{
+			case 2:
+				if(!VOICEPLAY.played)
+				{
+					voice.src="../voice/00"+kind+".mp3";
+					voice.play();
+					VOICEPLAY.played=true;
+				}
+				break;
+			case 3:
+				if(!VOICEPLAY.pushed)
+				{
+					voice.src="../voice/00"+kind+".mp3";
+					voice.play();
+					VOICEPLAY.pushed=true;
+				}
+				var a=setInterval(function()
+				{
+					if(voice.ended)
+					{
+						document.location.replace(encodeURI(msg));
+clearInterval(a);
+					}
+				},10);
+				break;
+			case 31:
+				voice.src="../voice/003.mp3";
+				voice.play();
+				break;
+		}
+	}
+};
+for(var i=0;i<2;i++)
+{
+	BTNIMG.btnimg[i]=new Array();
+	BTNIMG.btnimg[i][0]=new Image();
+	BTNIMG.btnimg[i][0].src="../pic/main_page/gamestart_btn"+(parseInt(i)+1)+".png";
+	BTNIMG.btnimg[i][1]=new Image();
+	BTNIMG.btnimg[i][1].src="../pic/main_page/set_btn"+(parseInt(i)+1)+".png";
+	BTNIMG.btnimg[i][2]=new Image();
+	BTNIMG.btnimg[i][2].src="../pic/main_page/team_btn"+(parseInt(i)+1)+".png";
+	BTNIMG.btnimg[i][3]=new Image();
+	BTNIMG.btnimg[i][3].src="../pic/main_page/quesmake_btn"+(parseInt(i)+1)+".png";
+}
+OLD_LOAD.bg.src="../pic/main_page/old_bg.png";
+for(var i=1;i<=2;i++)
+{
+	OLD_LOAD.img[i-1]=new Image();
+	OLD_LOAD.img[i-1].src="../pic/main_page/old_bt"+i+".png";
+}
+
+window.onload=function()
+{
+	if(!havethechar(document.location.href,'?'))
+	{
+		alert("這裡不是開始頁喔XDDDD");
+		good_bye();
+	}
+	startinfor();
+	bgdraw();
+	BTNIMG.btninfor();
+	for(var i=0;i<BTNIMG.btnimg[0].length;i++)BTNIMG.btndraw(i+1,0,1);
+	toucheventlistener();
+}
+function havethechar(check_arr,check)
+{
+	for(var i=0;i<check_arr.length;i++)
+	{
+		if(check_arr[i]==check)return true;
+	}
+	return false;
+}
+function inareaornot(mx,my,x1,y1,xs,ys)
+{
+	if(mx>=x1&&mx<=(x1+xs)&&my>=y1&&my<=(y1+ys))return true;
+	return false;
+}
+function toucheventlistener()
+{
+	//touchcheck.strokeRect(1315,660,115,130);//1055,654,126,143
+	ctouchcheck.addEventListener("mousemove",MouseMoveHandler,false);
+	ctouchcheck.addEventListener("mousedown",MouseDownHandler,false);
+	ctouchcheck.addEventListener("mouseup",MouseUpHandler,false);
+	ctouchcheck.addEventListener("click",MouseClickHandler,false);
+}
+function MouseMoveHandler(event)
+{
+	MOUSE.getmousexy();
+	if(OLD_LOAD.check)
+	{
+		if( inareaornot(MOUSE.mx,MOUSE.my,OLD_LOAD.bx[0],OLD_LOAD.by,OLD_LOAD.bw,OLD_LOAD.bh)||inareaornot(MOUSE.mx,MOUSE.my,OLD_LOAD.bx[1],OLD_LOAD.by,OLD_LOAD.bw,OLD_LOAD.bh) )
+		{
+			if(!VOICEPLAY.pushed)VOICEPLAY.playvoice(2);
+		}
+		else
+		{
+			 VOICEPLAY.played=false;
+		}
+		if(!VOICEPLAY.pushed)
+		{
+			if(inareaornot(MOUSE.mx,MOUSE.my,OLD_LOAD.bx[0],OLD_LOAD.by,OLD_LOAD.bw,OLD_LOAD.bh)) OLD_LOAD.btndraw(0,2);
+			else OLD_LOAD.btndraw(0,1);
+			if(inareaornot(MOUSE.mx,MOUSE.my,OLD_LOAD.bx[1],OLD_LOAD.by,OLD_LOAD.bw,OLD_LOAD.bh)) OLD_LOAD.btndraw(1,2);
+			else OLD_LOAD.btndraw(1,1);
+		}
+	}
+	else
+	{
+		if( (inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx1[1],BTNIMG.by1[1],BTNIMG.bl[1],BTNIMG.bw[1])||inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx2[1],BTNIMG.by1[1],BTNIMG.bl[1],BTNIMG.bw[1])||inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx1[1],BTNIMG.by2[1],BTNIMG.bl[1],BTNIMG.bw[1])||inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx2[1],BTNIMG.by2[1],BTNIMG.bl[1],BTNIMG.bw[1])))
+		{
+			if(!VOICEPLAY.pushed)VOICEPLAY.playvoice(2);
+			if(MOUSE.click_check)return;
+		}
+		else
+		{
+			 MOUSE.click_check=false;
+			 VOICEPLAY.played=false;
+		}
+		if(!VOICEPLAY.pushed)
+		{
+			if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx1[1],BTNIMG.by1[1],BTNIMG.bl[1],BTNIMG.bw[1]))BTNIMG.btndraw(1,1,2);
+			else BTNIMG.btndraw(1,0,1);
+			if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx2[1],BTNIMG.by1[1],BTNIMG.bl[1],BTNIMG.bw[1])) BTNIMG.btndraw(2,1,2);
+			else BTNIMG.btndraw(2,0,1);
+			if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx1[1],BTNIMG.by2[1],BTNIMG.bl[1],BTNIMG.bw[1])) BTNIMG.btndraw(3,1,2);
+			else BTNIMG.btndraw(3,0,1);
+			if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx2[1],BTNIMG.by2[1],BTNIMG.bl[1],BTNIMG.bw[1])) BTNIMG.btndraw(4,1,2);
+			else BTNIMG.btndraw(4,0,1);
+		}	
+	}
+}
+function MouseDownHandler(event)
+{
+	var msg="../pages/set_rolemap_page.html?1&20&4$4$4$4&屈原$魯迅$1蘇軾$胡適&";
+	var msg2=SETPAGE.check1+"$"+SETPAGE.check2+"&"+SETPAGE.volumex;
+	msg=msg+msg2;
+	MOUSE.getmousexy();
+	if(OLD_LOAD.check)
+	{
+		if(VOICEPLAY.pushed)return;
+		if(inareaornot(MOUSE.mx,MOUSE.my,OLD_LOAD.bx[0],OLD_LOAD.by,OLD_LOAD.bw,OLD_LOAD.bh))
+		{
+			 OLD_LOAD.btndraw(0,0);
+			 VOICEPLAY.playvoice(3,msg);
+		}
+		if(inareaornot(MOUSE.mx,MOUSE.my,OLD_LOAD.bx[1],OLD_LOAD.by,OLD_LOAD.bw,OLD_LOAD.bh)) 
+		{
+			OLD_LOAD.btndraw(1,0);
+			VOICEPLAY.playvoice(3,"../pages/newmap.html?special1&");
+		}
+	}
+	else
+	{
+		if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx1[1],BTNIMG.by1[1],BTNIMG.bl[1],BTNIMG.bw[1])||inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx2[1],BTNIMG.by1[1],BTNIMG.bl[1],BTNIMG.bw[1])||inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx1[1],BTNIMG.by2[1],BTNIMG.bl[1],BTNIMG.bw[1])||inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx2[1],BTNIMG.by2[1],BTNIMG.bl[1],BTNIMG.bw[1])) MOUSE.click_check=true;
+		else MOUSE.click_check=false;
+		if(VOICEPLAY.pushed)return;
+		if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx1[1],BTNIMG.by1[1],BTNIMG.bl[1],BTNIMG.bw[1]))
+		{
+			BTNIMG.btndraw(1,1,0);
+			VOICEPLAY.playvoice(31);
+			OLD_LOAD.check=true;
+			OLD_LOAD.oldloads();
+		}
+		if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx2[1],BTNIMG.by1[1],BTNIMG.bl[1],BTNIMG.bw[1])) 
+		{
+			BTNIMG.btndraw(2,1,0);
+			VOICEPLAY.playvoice(3,"../pages/set_page.html?"+ msg2);
+		}
+		//else BTNIMG.btndraw(2,0,1);
+		if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx1[1],BTNIMG.by2[1],BTNIMG.bl[1],BTNIMG.bw[1]))
+		{
+			 BTNIMG.btndraw(3,1,0);
+			 VOICEPLAY.playvoice(3,"../pages/team_page.html?"+ msg2);
+		}
+		//else BTNIMG.btndraw(3,0,1);
+		if(inareaornot(MOUSE.mx,MOUSE.my,BTNIMG.bx2[1],BTNIMG.by2[1],BTNIMG.bl[1],BTNIMG.bw[1])) 
+		{
+			BTNIMG.btndraw(4,1,0);
+			VOICEPLAY.playvoice(3,"../pages/question_set_page.html?"+msg2);
+		}
+		//else BTNIMG.btndraw(4,0,1);	
+	}
+}
+function MouseUpHandler(event)
+{
+	MOUSE.click_check=false;
+}
+function startinfor()
+{
+	var url=document.location.href;
+	var temp=url.split('?');
+	var infor=temp[1].split('&');
+	//if(infor[0]=="set_page"||infor[0]=="team_page")
+	{
+		var checkinfor=infor[1].split('$');
+		SETPAGE.check1=checkinfor[0];
+		SETPAGE.check2=checkinfor[1];
+		SETPAGE.volumex=infor[2];
+	}
+}
+function bgdraw()
+{
+	cbg.drawImage(bimg,0,0,1500,843);
+}
+ function good_bye()
+  {
+     alert("網頁發生異常錯誤!!即將關閉網站。");
+ 	 window.opener=null;
+     window.close();
+        }
+</script>
