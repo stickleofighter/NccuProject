@@ -59,7 +59,7 @@ function touchEventHandler()
 		let i=0;
 		//for(let i in buttons)
 		//{
-			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawIsCheck(2);
+			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))/*buttons[i].drawIsCheck(2);*/console.log("inside"+i);
 			else buttons[i].drawNotCheck(0);
 		//}
 	};
