@@ -38,6 +38,7 @@ function voiceLoadCheck()
 	}))
 	{
 		clearInterval(t_voi);
+		localStorage["voiceloadcheck"]=JSON.stringify(true);
 		parent.frames['main'].voiceConstruct();
 	}
 	},100)

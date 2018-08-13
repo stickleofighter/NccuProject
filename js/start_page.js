@@ -104,7 +104,7 @@ function ObjConstruct()
 	buttons[1]=BUTTON("set",525,285,152,44);
 	buttons[2]=BUTTON("team",340,350,152,44);
 	buttons[3]=BUTTON("quesmake",525,350,152,44);
-	//voiceConstruct();
+	voiceConstruct();
 }
 function SourceOnload()
 {

@@ -68,6 +68,10 @@ function touchEventHandler()
 	ctouchcheck.on("click",MouseClickHandler);
 }
 
+function initialSet()
+{
+	localStorage["voiceloadcheck"]=JSON.stringify(false);
+}
 function canvasContext()
 {
 	ctouchcheck=$("#touchfeel");

@@ -20,9 +20,12 @@ function getMousePos(e)
 }
 function voiceConstruct()
 {
-	bgm=parent.frames['music'].bgm;
-	voices=parent.frames['music'].voices;
-	voiCheck=true;
+	if(JSON.parse(localStorage["voiceloadcheck"]))
+	{
+		bgm=parent.frames['music'].bgm;
+		voices=parent.frames['music'].voices;
+		voiCheck=true;	
+	}
 }
 function SourceLoadCheck(callback)
 {
