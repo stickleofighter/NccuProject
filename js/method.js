@@ -43,7 +43,7 @@ function SourceLoadCheck(callback)
 function loadingdraw(over=true)
 {
 	let counts=0;
-	ctcrk.lineWidth=5;.
+	ctcrk.lineWidth=5;
 	if(!over)
 	{
 		ctcrk.clearRect(320,155,100,100);
