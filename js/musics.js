@@ -18,6 +18,10 @@ function voiceControl(url)
 		pause: ()=>{
 			voice.pause();
 		},
+		stop: ()=>{
+			voice.pause();
+			voice.currentTime=0;
+		},
 		set loop(tf){
 			voice.loop=tf;
 		},

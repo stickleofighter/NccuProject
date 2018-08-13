@@ -65,6 +65,7 @@ function touchEventHandler()
 				if(MovePlayOnce[i])
 				{
 					MovePlayOnce[i]=false;
+					voices[1].stop();
 					voices[1].play();
 				}
 			}
