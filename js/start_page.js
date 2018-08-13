@@ -97,12 +97,6 @@ function canvasContext()
 	cbg=cbackground[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
-	/*var ctouchcheck;
-var ctcrk;
-var cbackground;
-var cbg;
-var cbutton;
-var cbtn;*/
 }
 function ObjConstruct()
 {

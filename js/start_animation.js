@@ -9,7 +9,7 @@ function SKIP(x,y,w,h)//665 385 75 30
 {
 	let Images=new Image();
 	Images.src="media/pic/main_page/skip.png";
-	ImageArray.push(Images);
+	Images.onload=SourceOnload;
 	let ww=[w,w*0.9,w*1.1];
 	let hh=[h,h*0.9,h*1.1];
 	let xx=[x,x+(ww[0]-ww[1])/2,x-(ww[2]-ww[0])/2];
@@ -89,5 +89,4 @@ function SourceOnload()
 $(document).ready(()=>{
 	canvasContext();
 	ObjConstruct();
-	SourceLoadCheck(SourceOnload);
 });
