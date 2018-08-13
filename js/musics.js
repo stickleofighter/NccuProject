@@ -9,14 +9,17 @@ function voiceControl(kind)
 		muteswitch:()=>{
 			voice[0].muted=!voice[0].muted;
 		},
-		volumeset:(num)=>{
-			voice[0].volume=num*0.005;
-		},
 		play: ()=>{
 			voice[0].play();
 		},
 		switchurl: (url)=>{
 			voice[0].src=`media/voice/${url}.mp3`;
+		},
+		set volume(){
+			voice[0].volume=num*0.005;
+		},
+		get ended(){
+			return voice[0].ended;
 		}
 	};
 }
