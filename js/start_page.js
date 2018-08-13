@@ -56,26 +56,26 @@ function touchEventHandler()
 	let MouseMoveHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		for(let btn in buttons)
+		for(let i in buttons)
 		{
-			if(areaCheck(btn.x,btn.y,btn.w,btn.h))btn.drawIsCheck(2);
-			else btn.drawNotCheck(0);
+			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawIsCheck(2);
+			else buttons[i].drawNotCheck(0);
 		}
 	};
 	let MouseDownHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		for(let btn in buttons)
+		for(let i in buttons)
 		{
-			if(areaCheck(btn.x,btn.y,btn.w,btn.h))btn.drawIsCheck(1);
-			else btn.drawNotCheck(0);
+			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawIsCheck(1);
+			else buttons[i].drawNotCheck(0);
 		}
 	};
 	let MouseUpHandler=e=>
 	{
-		for(let btn in buttons)
+		for(let i in buttons)
 		{
-			if(areaCheck(btn.x,btn.y,btn.w,btn.h))btn.drawNotCheck(0);
+			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawNotCheck(0);
 		}
 	};
 	let MouseClickHandler=e=>
@@ -116,7 +116,7 @@ function ObjConstruct()
 function imgOnload()
 {
 	bg.draw();
-	for(let i in buttons) i.drawNotCheck(0);
+	for(let i in buttons) buttons[i].drawNotCheck(0);
 	bgm.play();
 	touchEventHandler();
 }
