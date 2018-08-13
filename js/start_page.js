@@ -41,7 +41,7 @@ function BUTTON(url,x,y,w,h)
 		get w(){return ww;},
 		get h(){return hh;},
 		get MovePlayOnce(){return PlayOnce;},
-		set MovePlayOnce(tf){PlayOnce=tf;}
+		set MovePlayOnce(tf){PlayOnce=tf;},
 		drawNotCheck: (bs)=>{
 			cbtn.clearRect(xx[2],yy[2],ww[2],hh[2]);
 			cbtn.drawImage(Images,xx[bs],yy[bs],ww[bs],hh[bs]);
