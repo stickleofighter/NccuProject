@@ -58,7 +58,7 @@ function touchEventHandler()
 		Mpos=getMousePos(e);
 		for(let i in buttons)
 		{
-			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawIsCheck(2);
+			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))buttons[i].drawIsCheck(2);
 			else buttons[i].drawNotCheck(0);
 		}
 	};
@@ -67,14 +67,14 @@ function touchEventHandler()
 		Mpos=getMousePos(e);
 		for(let i in buttons)
 		{
-			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawIsCheck(1);
+			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))buttons[i].drawIsCheck(1);
 			else buttons[i].drawNotCheck(0);
 		}
 	};
 	let MouseUpHandler=e=>
 	{
 		for(let i in buttons) 
-			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawNotCheck(0);
+			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))buttons[i].drawNotCheck(0);
 	};
 	let MouseClickHandler=e=>
 	{
@@ -82,9 +82,9 @@ function touchEventHandler()
 		for(let i in buttons) 
 			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))console.log("inside"+i);
 	};
-	/*ctouchcheck.on("mousemove",MouseMoveHandler);
+	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
-	ctouchcheck.on("mouseup",MouseUpHandler);*/
+	ctouchcheck.on("mouseup",MouseUpHandler);
 	ctouchcheck.on("click",MouseClickHandler);
 }
 
