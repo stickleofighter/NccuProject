@@ -6,7 +6,7 @@ function SKIP(x,y,w,h)//665 385 75 30
 	let hh=[h,h*0.9,h*1.1];
 	let xx=[x,x+(ww[0]-ww[1])/2,x-(ww[2]-ww[0])/2];
 	let yy=[y,y+(hh[0]-hh[1])/2,y-(hh[2]-hh[0])/2];
-	cbtn.drawImage(Images,xx[0],yy[0],ww[0],hh[0]);
+	Images.onload=()=>{	cbtn.drawImage(Images,xx[0],yy[0],ww[0],hh[0]);}
 	return{
 		get w(){return ww;},
 		get h(){return hh;},
