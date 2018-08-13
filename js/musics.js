@@ -16,7 +16,7 @@ function voiceControl(kind)
 			voice[0].play();
 		},
 		switchurl: (url)=>{
-			voice[0].src=url;
+			voice[0].src=`media/voice/${url}.mp3`;
 		}
 	};
 }
