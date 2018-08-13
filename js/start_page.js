@@ -83,10 +83,10 @@ function touchEventHandler()
 		Mpos=getMousePos(e);
 		alert("ouch!");
 	};
-	ctouchcheck.on("mousemove",MouseMoveHandler);
+/*	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
-	ctouchcheck.on("click",MouseClickHandler);
+	ctouchcheck.on("click",MouseClickHandler);*/
 }
 
 function canvasContext()
@@ -112,6 +112,7 @@ function SourceOnload()
 	bg.draw();
 	for(let i in buttons) buttons[i].drawNotCheck(0);
 	bgm.play();
+	bgm.loop=true;
 	touchEventHandler();
 }
 
