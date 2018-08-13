@@ -89,7 +89,7 @@ function touchEventHandler()
 				voices[2].stop();
 				voices[2].play();
 			}
-			else buttons[i].drawIsCheck(2);
+			//else buttons[i].drawIsCheck(2);
 		}
 	};
 	let MouseUpHandler=e=>
