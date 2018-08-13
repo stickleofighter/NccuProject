@@ -18,6 +18,9 @@ function voiceControl(url)
 		pause: ()=>{
 			voice.pause();
 		},
+		set loop(tf){
+			voice.loop=tf;
+		},
 		set volume(num){
 			voice.volume=num*0.005;
 		},
