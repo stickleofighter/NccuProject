@@ -80,7 +80,7 @@ function touchEventHandler()
 	{
 		Mpos=getMousePos(e);
 		for(let i in buttons) 
-			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))buttons[i].drawNotCheck(0);
+			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))console.log("inside"+i);
 	};
 	/*ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
