@@ -1,59 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>大富翁小學堂</title>
-<style>
-body {
-		background-attachment:fixed;
-		margin: 0px auto;
-    }
-.cv
-{
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-#backgroundimg
-{
-	 z-index: 1;
-}
-#buttonimg
-{
-	 z-index: 2;
-}
-#backgroundimg_u
-{
-	 z-index: 3;
-}
-#buttonimg_u
-{
-	 z-index: 4;
-}
-#touchfeel
-{
-	 z-index: 10;
-}
-</style>
-</head>
+	<head>
+		<meta  charset="utf-8" />
+		<title>大富翁小學堂</title>
+		<link rel='stylesheet' type="text/css" href="style/startstyle.css">
+	</head>
 
-<body>
-<div style="position: relative;">
- <canvas id="backgroundimg_u" class="cv" width="1500" height="843"><p>�A�a�s���������F�C���ڰڰڰڰ�</p>���� </canvas>
-  <canvas id="buttonimg_u" class="cv" width="1500" height="843"> </canvas>
-   <canvas id="backgroundimg" class="cv" width="1500" height="843"> </canvas>
-  <canvas id="buttonimg" class="cv" width="1500" height="843"> </canvas>
-  <canvas id="touchfeel" class="cv" width="1500" height="843"> </canvas>
-   </div>
-   <audio id="bgMusic">
-    <source  src="001.mp3" type="audio/mp3">
-    <source  src="001.ogg" type="audio/ogg">
-</audio>
-<audio id="bgSound">
-    <source  src="001.mp3" type="audio/mp3">
-    <source  src="001.ogg" type="audio/ogg">
-</audio>
-</body>
+	<body>
+		<div>
+			<canvas id="backgroundimg" class="cv" width="750" height="420"><p>Warning: 您的瀏覽器時髦值不夠，不能運行canvas</p> </canvas>
+			<canvas id="buttonimg" class="cv" width="750" height="420"> </canvas>
+			<canvas id="touchfeel" class="cv" width="750" height="420"> </canvas>
+		</div>
+	</body>
 </html>
 <script>
 var ctouchcheck=document.getElementById("touchfeel");

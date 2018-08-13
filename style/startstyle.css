@@ -1,0 +1,33 @@
+body {
+	background-attachment:fixed;
+	margin: 0px auto;
+}
+.cv
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+div{
+	position: relative;
+}
+#backgroundimg
+{
+	z-index: 1;
+}
+#buttonimg
+{
+	z-index: 2;
+}
+#backgroundimg_u
+{
+	z-index: 3;
+}	
+#buttonimg_u
+{
+	z-index: 4;
+}
+#touchfeel
+{
+	z-index: 10;
+}
