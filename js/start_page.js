@@ -53,7 +53,7 @@ function BUTTON(url,x,y,w,h)
 function touchEventHandler()
 {
 	let Mpos;
-	let MovePlayOnce=true;
+	let MovePlayOnce=[true,true,true,true];
 	let MouseMoveHandler=e=>
 	{
 		Mpos=getMousePos(e);
@@ -62,15 +62,15 @@ function touchEventHandler()
 			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))
 			{
 				buttons[i].drawIsCheck(2);
-				if(MovePlayOnce)
+				if(MovePlayOnce[i])
 				{
-					MovePlayOnce=false;
+					MovePlayOnce[i]=false;
 					voices[1].play();
 				}
 			}
 			else
 			{
-				MovePlayOnce=true;
+				MovePlayOnce[i]=true;
 				buttons[i].drawNotCheck(0);
 			}
 		}

@@ -13,11 +13,6 @@ function voiceControl(url)
 			voice.muted=!voice.muted;
 		},
 		play: ()=>{
-			if(!voice.ended)
-			{
-				voice.pause();
-				voice.currentTime=0;
-			}
 			voice.play();
 		},
 		pause: ()=>{
