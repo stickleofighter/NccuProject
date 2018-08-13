@@ -53,6 +53,7 @@ function BUTTON(url,x,y,w,h)
 function touchEventHandler()
 {
 	let Mpos;
+	let MovePlayOnce=true;
 	let MouseMoveHandler=e=>
 	{
 		Mpos=getMousePos(e);
@@ -61,9 +62,17 @@ function touchEventHandler()
 			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))
 			{
 				buttons[i].drawIsCheck(2);
-				voices[1].play();
+				if(once)
+				{
+					MovePlayOnce=false;
+					voices[1].play();
+				}
 			}
-			else buttons[i].drawNotCheck(0);
+			else
+			{
+				MovePlayOnce=true;
+				buttons[i].drawNotCheck(0);
+			}
 		}
 	};
 	let MouseDownHandler=e=>
