@@ -56,12 +56,11 @@ function touchEventHandler()
 	let MouseMoveHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		let i=0;
-		//for(let i in buttons)
-		//{
-			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))/*buttons[i].drawIsCheck(2);*/console.log("inside"+i);
+		for(let i in buttons)
+		{
+			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawIsCheck(2);
 			else buttons[i].drawNotCheck(0);
-		//}
+		}
 	};
 	let MouseDownHandler=e=>
 	{
@@ -80,13 +79,14 @@ function touchEventHandler()
 	let MouseClickHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		for(let i in buttons)
-			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))alert("ouch!");
+		/*for(let i in buttons)
+			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))alert("ouch!");*/
+		alert("ouch!");
 	};
-	ctouchcheck.on("mousemove",MouseMoveHandler);
-	/*ctouchcheck.on("mousedown",MouseDownHandler);
-	ctouchcheck.on("mouseup",MouseUpHandler);
-	ctouchcheck.on("click",MouseClickHandler);cc*/
+	/*ctouchcheck.on("mousemove",MouseMoveHandler);
+	ctouchcheck.on("mousedown",MouseDownHandler);
+	ctouchcheck.on("mouseup",MouseUpHandler);*/
+	ctouchcheck.on("click",MouseClickHandler);
 }
 
 function canvasContext()
