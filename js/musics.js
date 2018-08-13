@@ -14,6 +14,9 @@ function voiceControl(kind)
 		},
 		play: ()=>{
 			voice[0].play();
+		},
+		switchurl: (url)=>{
+			voice[0].src=url;
 		}
 	}
 }
