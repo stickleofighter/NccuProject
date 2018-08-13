@@ -1,7 +1,7 @@
 var ImageArray=new Array();
 var bgm;
 var voices=new Array();
-var voiCheck;
+var voiCheck=false;
 
 function areaCheck(mx,my,x1,y1,xs,ys)
 {
@@ -22,14 +22,14 @@ function voiceConstruct()
 {
 	bgm=parent.frames['music'].bgm;
 	voices=parent.frames['music'].voices;
-	voiCheck=parent.frames['music'].voiceLoadCheck;
+	voiCheck=true;
 }
 function SourceLoadCheck(callback)
 {
 	let t_img=setInterval(()=>{
 		if(ImageArray.every((img)=>{
 			return img.height>0;
-		})&&voiCheck()){
+		})&&voiCheck){
 			clearInterval(t_img),
 			ImageArray.length=0;
 			callback();

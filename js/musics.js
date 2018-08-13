@@ -32,12 +32,19 @@ function voiceControl(url)
 
 function voiceLoadCheck()
 {
-	return VoiceArray.every((voi)=>{
+	let t_voi=setInterval(()=>{
+		if(VoiceArray.every(voi=>{
 		return voi.readyState==4;
-	});
+	}))
+	{
+		clearInterval(t_voi);
+		parent.frames['main'].voiceConstruct();
+	}
+	},100)
 	
 }
 $(document).ready(()=>{
 	bgm=voiceControl("bgm");
 	for(let i=0;i<6;i++) voices[i]=voiceControl(`00${i+1}`);
+	voiceLoadCheck();
 })

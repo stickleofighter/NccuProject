@@ -74,7 +74,7 @@ function touchEventHandler()
 	let MouseUpHandler=e=>
 	{
 		for(let i in buttons) 
-			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))buttons[i].drawNotCheck(0);
+			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))buttons[i].drawIsCheck(2);
 	};
 	let MouseClickHandler=e=>
 	{
@@ -104,7 +104,7 @@ function ObjConstruct()
 	buttons[1]=BUTTON("set",525,285,152,44);
 	buttons[2]=BUTTON("team",340,350,152,44);
 	buttons[3]=BUTTON("quesmake",525,350,152,44);
-	voiceConstruct();
+	//voiceConstruct();
 }
 function SourceOnload()
 {
