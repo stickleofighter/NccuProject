@@ -2,6 +2,7 @@ var ImageArray=new Array();
 var bgm;
 var voices=new Array();
 var voiCheck=false;
+var t_lod;
 
 function areaCheck(mx,my,x1,y1,xs,ys)
 {
@@ -42,8 +43,14 @@ function SourceLoadCheck(callback)
 function loadingdraw(over=true)
 {
 	let counts=0;
-	ctcrk.lineWidth=5;
-	let t_lod=setInterval(()=>{
+	ctcrk.lineWidth=5;.
+	if(!over)
+	{
+		ctcrk.clearRect(320,155,100,100);
+		clearInterval(t_lod);
+	}
+	else{
+		t_lod=setInterval(()=>{
 		switch(counts)
 		{
 			case 0:
@@ -73,10 +80,6 @@ function loadingdraw(over=true)
 				break;
 		}
 		counts++;
-	},150)
-	if(!over)
-	{
-		ctcrk.clearRect(320,155,100,100);
-		clearInterval(t_lod);
+		},150);
 	}
 }
