@@ -30,6 +30,7 @@ function BUTTON(url,x,y,w,h)
 	Images2.src=`media/pic/main_page/${url}_btn2.png`;
 	ImageArray.push(Images);
 	ImageArray.push(Images2);
+	let PlayOnce=true;
 	let ww=[w,w*0.9,w*1.1];
 	let hh=[h,h*0.9,h*1.1];
 	let xx=[x,x+(ww[0]-ww[1])/2,x-(ww[2]-ww[0])/2];
@@ -39,6 +40,8 @@ function BUTTON(url,x,y,w,h)
 		get y(){return yy;},
 		get w(){return ww;},
 		get h(){return hh;},
+		get MovePlayOnce(){return PlayOnce;},
+		set MovePlayOnce(tf){PlayOnce=tf;}
 		drawNotCheck: (bs)=>{
 			cbtn.clearRect(xx[2],yy[2],ww[2],hh[2]);
 			cbtn.drawImage(Images,xx[bs],yy[bs],ww[bs],hh[bs]);
@@ -53,7 +56,6 @@ function BUTTON(url,x,y,w,h)
 function touchEventHandler()
 {
 	let Mpos;
-	let MovePlayOnce=[true,true,true,true];
 	let MouseMoveHandler=e=>
 	{
 		Mpos=getMousePos(e);
@@ -62,16 +64,16 @@ function touchEventHandler()
 			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))
 			{
 				buttons[i].drawIsCheck(2);
-				if(MovePlayOnce[i])
+				if(buttons[i].MovePlayOnce)
 				{
-					MovePlayOnce[i]=false;
+					buttons[i].MovePlayOnce=false;
 					voices[1].stop();
 					voices[1].play();
 				}
 			}
 			else
 			{
-				MovePlayOnce[i]=true;
+				buttons[i].MovePlayOnce=true;
 				buttons[i].drawNotCheck(0);
 			}
 		}
@@ -84,6 +86,7 @@ function touchEventHandler()
 			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))
 			{
 				buttons[i].drawIsCheck(1);
+				voices[2].stop();
 				voices[2].play();
 			}
 		}
