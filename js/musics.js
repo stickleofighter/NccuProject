@@ -18,7 +18,7 @@ function voiceControl(kind)
 		switchurl: (url)=>{
 			voice[0].src=url;
 		}
-	}
+	};
 }
 $(document).ready(()=>{
 	bgm=voiceControl("#bgMusic");
