@@ -101,10 +101,10 @@ function canvasContext()
 function ObjConstruct()
 {
 	bg=BG();
-	buttons[0]=BUTTON("gamestart",340,285);
-	buttons[1]=BUTTON("set",525,285);
-	buttons[2]=BUTTON("team",340,350);
-	buttons[3]=BUTTON("quesmake",525,350);
+	buttons[0]=BUTTON("gamestart",340,285,152,44);
+	buttons[1]=BUTTON("set",525,285,152,44);
+	buttons[2]=BUTTON("team",340,350,152,44);
+	buttons[3]=BUTTON("quesmake",525,350,152,44);
 	voiceConstruct();
 }
 function SourceOnload()
