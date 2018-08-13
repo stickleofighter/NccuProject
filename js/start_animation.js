@@ -79,7 +79,7 @@ function ObjConstruct()
 {
 	skips=SKIP(665,385,75,30);
 }
-function imgOnload()
+function SourceOnload()
 {
 	skips.draw(0);
 	vidEndCheck();
@@ -89,5 +89,5 @@ function imgOnload()
 $(document).ready(()=>{
 	canvasContext();
 	ObjConstruct();
-	imageLoadCheck(imgOnload);
+	SourceLoadCheck(SourceOnload);
 });

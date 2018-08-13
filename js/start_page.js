@@ -113,7 +113,7 @@ function ObjConstruct()
 	buttons[3]=BUTTON("quesmake",525,350);
 	voiceConstruct();
 }
-function imgOnload()
+function SourceOnload()
 {
 	bg.draw();
 	for(let i in buttons) buttons[i].drawNotCheck(0);
@@ -124,5 +124,5 @@ function imgOnload()
 $(document).ready(()=>{
 	canvasContext();
 	ObjConstruct();
-	imageLoadCheck(imgOnload);
+	SourceLoadCheck(SourceOnload);
 });

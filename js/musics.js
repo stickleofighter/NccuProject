@@ -1,33 +1,40 @@
+var VoiceArray=new Array();
+
 var bgm;
-var vo1;
-var vo2;
-function voiceControl(kind)
+var voices=new Array();
+function voiceControl(url)
 {
-	let voice=$(kind);
-	voice[0].volume=0.5;
+	let voice=new Audio();
+	voice.src=`media/voice/${url}.mp3`;
+	VoiceArray.push(voice);
+	voice.volume=0.5;
 	return{
 		muteswitch:()=>{
-			voice[0].muted=!voice[0].muted;
-		},
-		switchurl: (url)=>{
-			voice[0].src=`media/voice/${url}.mp3`;
+			voice.muted=!voice.muted;
 		},
 		play: ()=>{
-			voice[0].play();
+			voice.play();
 		},
 		pause: ()=>{
-			voice[0].pause();
+			voice.pause();
 		},
 		set volume(num){
-			voice[0].volume=num*0.005;
+			voice.volume=num*0.005;
 		},
 		get ended(){
-			return voice[0].ended;
+			return voice.ended;
 		}
 	};
 }
+
+function voiceLoadCheck()
+{
+	return VoiceArray.every((voi)=>{
+		return voi.readyState==4;
+	});
+	
+}
 $(document).ready(()=>{
-	bgm=voiceControl("#bgMusic");
-	vo1=voiceControl("#bgSound1");
-	vo2=voiceControl("#bgSound2");
+	bgm=voiceControl("bgm");
+	for(let i=0;i<6;i++) voices[i]=voiceControl(`00${i+1}`);
 })
