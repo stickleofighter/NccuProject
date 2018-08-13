@@ -4,6 +4,7 @@
 		<meta charset=utf-8" />
 		<title>大富翁小學堂</title>
 		<script src="js/framework/jquery.js"></script>
+		<script src="js/musics.js"></scrip>
 	</head>
 
 	<body>
@@ -11,7 +12,7 @@
 			<source  src="media/voice/bgm.mp3" type="audio/mp3">
 			<source  src="media/voice/bgm.ogg" type="audio/ogg">
 		</audio>
-		<audio id="bgSound">
+		<audio id="bgSound1">
 			<source  src="media/voice/001.mp3" type="audio/mp3">
 			<source  src="media/voice/001.ogg" type="audio/ogg">
 		</audio>
@@ -20,22 +21,4 @@
 			<source  src="media/voice/001.ogg" type="audio/ogg">
 		</audio>
 	</body>
-<script>
-var a=1;
-function mute_set(tf)
-{
-	console.log("mutted!!");
-	var voice=document.getElementById("bgMusic");
-	voice.muted=tf;
-}
-function volume_set(num)
-{
-	var voice=document.getElementById("bgMusic");
-	voice.volume=num*0.005;
-}
-window.onload=function()
-{
-	volume_set(50);
-}
-</script>
 </html>
