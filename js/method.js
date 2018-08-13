@@ -46,7 +46,7 @@ function loadingdraw(over=true)
 	ctcrk.lineWidth=5;
 	if(!over)
 	{
-		ctcrk.clearRect(320,155,100,100);
+		ctcrk.clearRect(300,135,150,150);
 		clearInterval(t_lod);
 	}
 	else{
@@ -54,7 +54,7 @@ function loadingdraw(over=true)
 		switch(counts)
 		{
 			case 0:
-				ctcrk.clearRect(320,155,100,100);
+				ctcrk.clearRect(300,135,150,150);
 				ctcrk.beginPath();
 				ctcrk.arc(375,210,50,0,3*Math.PI/9);
 				ctcrk.arc(375,210,50,6*Math.PI/9,9*Math.PI/9);
@@ -62,7 +62,7 @@ function loadingdraw(over=true)
 				ctcrk.stroke();
 				break;
 			case 1:
-				ctcrk.clearRect(320,155,100,100);
+				ctcrk.clearRect(300,135,150,150);
 				ctcrk.beginPath();
 				ctcrk.arc(375,210,50,Math.PI/9,4*Math.PI/9);
 				ctcrk.arc(375,210,50,7*Math.PI/9,10*Math.PI/9);
@@ -70,16 +70,15 @@ function loadingdraw(over=true)
 				ctcrk.stroke();
 				break;
 			case 2:
-				ctcrk.clearRect(320,155,100,100);
+				ctcrk.clearRect(300,135,150,150);
 				ctcrk.beginPath();
 				ctcrk.arc(375,210,50,2*Math.PI/9,5*Math.PI/9);
 				ctcrk.arc(375,210,50,8*Math.PI/9,11*Math.PI/9);
 				ctcrk.arc(375,210,50,14*Math.PI/9,17*Math.PI/9);
 				ctcrk.stroke();
-				counts=0;
 				break;
 		}
-		counts++;
+		counts=counts==2?0:counts;
 		},150);
 	}
 }
