@@ -52,7 +52,7 @@ function BUTTON(url,x,y,w,h)
 
 function touchEventHandler()
 {
-	let Mpos;//areaCheck
+	let Mpos;
 	let MouseMoveHandler=e=>
 	{
 		Mpos=getMousePos(e);
@@ -73,20 +73,19 @@ function touchEventHandler()
 	};
 	let MouseUpHandler=e=>
 	{
-		for(let i in buttons)
-		{
+		for(let i in buttons) 
 			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))buttons[i].drawNotCheck(0);
-		}
 	};
 	let MouseClickHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		alert("ouch!");
+		for(let i in buttons)
+			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))alert("ouch!");
 	};
-/*	ctouchcheck.on("mousemove",MouseMoveHandler);
+	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
-	ctouchcheck.on("click",MouseClickHandler);*/
+	ctouchcheck.on("click",MouseClickHandler);
 }
 
 function canvasContext()
