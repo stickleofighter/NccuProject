@@ -11,6 +11,9 @@ function voiceControl(kind)
 		},
 		volumeset:(num)=>{
 			voice[0].volume=num*0.005;
+		},
+		play: ()=>{
+			voice[0].play();
 		}
 	}
 }
@@ -18,5 +21,4 @@ $(document).ready(()=>{
 	bgm=voiceControl("#bgMusic");
 	vo1=voiceControl("#bgSound1");
 	vo2=voiceControl("#bgSound2");
-	bgm.play();
 })
