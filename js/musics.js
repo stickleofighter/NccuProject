@@ -18,4 +18,5 @@ $(document).ready(()=>{
 	bgm=voiceControl("#bgMusic");
 	vo1=voiceControl("#bgSound1");
 	vo2=voiceControl("#bgSound2");
+	bgm.play();
 })
