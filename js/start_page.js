@@ -86,7 +86,7 @@ function touchEventHandler()
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	/*ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
-	ctouchcheck.on("click",MouseClickHandler);*/
+	ctouchcheck.on("click",MouseClickHandler);cc*/
 }
 
 function canvasContext()
