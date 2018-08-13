@@ -79,9 +79,8 @@ function touchEventHandler()
 	let MouseClickHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		/*for(let i in buttons)
-			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))alert("ouch!");*/
-		alert("ouch!");
+		for(let i in buttons)
+			if(areaCheck(buttons[i].x,buttons[i].y,buttons[i].w,buttons[i].h))alert("ouch!");
 	};
 	/*ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
