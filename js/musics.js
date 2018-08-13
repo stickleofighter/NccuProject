@@ -15,7 +15,7 @@ function voiceControl(kind)
 		switchurl: (url)=>{
 			voice[0].src=`media/voice/${url}.mp3`;
 		},
-		set volume(){
+		set volume(num){
 			voice[0].volume=num*0.005;
 		},
 		get ended(){
