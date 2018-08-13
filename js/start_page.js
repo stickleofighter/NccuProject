@@ -85,7 +85,6 @@ function touchEventHandler()
 				buttons[i].drawIsCheck(1);
 				voices[2].play();
 			}
-			else buttons[i].drawNotCheck(0);
 		}
 	};
 	let MouseUpHandler=e=>
