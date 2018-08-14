@@ -117,7 +117,7 @@ function canvasContext()
 	cbg=cbackground[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
-	loadingdraw(true);
+	//loadingdraw(true);
 }
 function ObjConstruct()
 {
@@ -130,7 +130,7 @@ function ObjConstruct()
 }
 function SourceOnload()
 {
-	loadingdraw(false);
+	//loadingdraw(false);
 	bg.draw();
 	for(let i in buttons) buttons[i].drawNotCheck(0);
 	bgm.play();
