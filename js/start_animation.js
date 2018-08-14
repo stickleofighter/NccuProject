@@ -9,6 +9,7 @@ function SKIP(x,y,w,h)//665 385 75 30
 {
 	let Images=new Image();
 	Images.src="media/pic/main_page/skip.png";
+	ImageArray.push(Images);
 	let ww=[w,w*0.9,w*1.1];
 	let hh=[h,h*0.9,h*1.1];
 	let xx=[x,x+(ww[0]-ww[1])/2,x-(ww[2]-ww[0])/2];
@@ -32,7 +33,7 @@ function vidEndCheck()
 	{
 		if(vid[0].ended)
 		{
-			clearInterval(this);
+			clearInterval(a);
 			document.location.replace("start_page.html");
 		}
 	},10);
@@ -49,11 +50,16 @@ function touchEventHandler()
 	let MouseDownHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0])) skips.draw(1);
+		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0])) 
+		{
+			ctouchcheck.off("mousemove",MouseMoveHandler);
+			skips.draw(1);
+		}
 		else skips.draw(0);
 	};
 	let MouseUpHandler=e=>
 	{
+		ctouchcheck.on("mousemove",MouseMoveHandler);
 		skips.draw(0);
 	};
 	let MouseClickHandler=e=>
