@@ -32,7 +32,7 @@ function SourceLoadCheck(callback)
 {
 	let t_img=setInterval(()=>{
 		if(ImageArray.every((img)=>{
-			return img.height>0;
+			return img.height>0&&img.width>0;
 		})&&voiCheck){
 			clearInterval(t_img),
 			ImageArray.length=0;

@@ -9,7 +9,6 @@ function SKIP(x,y,w,h)//665 385 75 30
 {
 	let Images=new Image();
 	Images.src="media/pic/main_page/skip.png";
-	Images.onload=SourceOnload;
 	let ww=[w,w*0.9,w*1.1];
 	let hh=[h,h*0.9,h*1.1];
 	let xx=[x,x+(ww[0]-ww[1])/2,x-(ww[2]-ww[0])/2];
@@ -34,7 +33,7 @@ function vidEndCheck()
 		if(vid[0].ended)
 		{
 			clearInterval(this);
-			document.location.replace("MonopolyLearn.html");
+			document.location.replace("start_page.html");
 		}
 	},10);
 }
@@ -60,7 +59,7 @@ function touchEventHandler()
 	let MouseClickHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0]))document.location.replace("MonopolyLearn.html");
+		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0]))document.location.replace("start_page.html");
 	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
@@ -82,6 +81,7 @@ function canvasContext()
 function ObjConstruct()
 {
 	skips=SKIP(665,385,75,30);
+	voiceConstruct();
 }
 function SourceOnload()
 {
@@ -93,4 +93,5 @@ function SourceOnload()
 $(document).ready(()=>{
 	canvasContext();
 	ObjConstruct();
+	SourceLoadCheck(SourceOnload)
 });
