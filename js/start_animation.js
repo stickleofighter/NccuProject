@@ -10,6 +10,7 @@ function SKIP(x,y,w,h)//665 385 75 30
 	let Images=new Image();
 	Images.src="media/pic/main_page/skip.png";
 	ImageArray.push(Images);
+	let PlayOnce=true;
 	let ww=[w,w*0.9,w*1.1];
 	let hh=[h,h*0.9,h*1.1];
 	let xx=[x,x+(ww[0]-ww[1])/2,x-(ww[2]-ww[0])/2];
@@ -19,6 +20,8 @@ function SKIP(x,y,w,h)//665 385 75 30
 		get h(){return hh;},
 		get x(){return xx;},
 		get y(){return yy;},
+		get MovePlayOnce(){return PlayOnce;},
+		set MovePlayOnce(tf){PlayOnce=tf;},
 		draw: (bs)=>{
 			cbtn.clearRect(xx[2],yy[2],ww[2],hh[2]);
 			cbtn.drawImage(Images,xx[bs],yy[bs],ww[bs],hh[bs]);
@@ -44,8 +47,21 @@ function touchEventHandler()
 	let MouseMoveHandler=e=>
 	{
 		Mpos=getMousePos(e);
-		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0])) skips.draw(2);
-		else skips.draw(0);
+		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0]))
+		{
+			 skips.draw(2);
+			 if(skips.MovePlayOnce)
+			 {
+				skips.MovePlayOnce=false;
+				voices[1].stop();
+				voices[1].play();
+			 }
+		}
+		else 
+		{
+			skips.draw(0);
+			skips.MovePlayOnce=true;
+		}
 	};
 	let MouseDownHandler=e=>
 	{
@@ -54,6 +70,8 @@ function touchEventHandler()
 		{
 			ctouchcheck.off("mousemove",MouseMoveHandler);
 			skips.draw(1);
+			voices[2].stop();
+			voices[2].play();
 		}
 		else skips.draw(0);
 	};
