@@ -85,15 +85,17 @@ function touchEventHandler()
 		{
 			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))
 			{
+				ctouchcheck.off("mousemove",MouseMoveHandler);
 				buttons[i].drawIsCheck(1);
 				voices[2].stop();
 				voices[2].play();
 			}
-			//else buttons[i].drawIsCheck(2);
+			else buttons[i].drawNotCheck(0);
 		}
 	};
 	let MouseUpHandler=e=>
 	{
+		ctouchcheck.on("mousemove",MouseMoveHandler);
 		for(let i in buttons) 
 			if(areaCheck(Mpos.x,Mpos.y,buttons[i].x[0],buttons[i].y[0],buttons[i].w[0],buttons[i].h[0]))buttons[i].drawIsCheck(2);
 	};
