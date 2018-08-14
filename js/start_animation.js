@@ -81,6 +81,7 @@ function canvasContext()
 function ObjConstruct()
 {
 	skips=SKIP(665,385,75,30);
+	initialSet();
 	voiceConstruct();
 }
 function SourceOnload()
