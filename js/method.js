@@ -4,9 +4,9 @@ var voices=new Array();
 var voiCheck=false;
 var t_lod;
 
-function areaCheck(mx,my,x1,y1,xs,ys)
+function areaCheck(Mouse,target,bs)
 {
-	return mx>=x1&&mx<=(x1+xs)&&my>=y1&&my<=(y1+ys);
+	return Mouse.x()>=target.x(bs)&&Mouse.x()<=(target.x(bs)+target.w(bs))&&Mouse.y()>=target.y(bs)&&Mouse.y()<=(target.y(bs)+target.h(bs));
 }
 function haveChar(check_arr,check)
 {	
@@ -14,10 +14,8 @@ function haveChar(check_arr,check)
 }
 function getMousePos(e)
 {
-	return{
-		get x(){return e.offsetX;},
-		get y(){return e.offsetY;}
-	}
+	this["x"]=()=>e.offsetX;
+	this["y"]=()=>e.offsetY;
 }
 function voiceConstruct()
 {
@@ -40,7 +38,7 @@ function SourceLoadCheck(callback)
 		}
 	},100)
 }
-function loadingdraw(over=true)
+/*function loadingdraw(over=true)
 {
 	let counts=0;
 	ctcrk.lineWidth=5;
@@ -81,4 +79,36 @@ function loadingdraw(over=true)
 		counts=counts==2?0:counts;
 		},150);
 	}
+}*/
+function BG(bg)
+{
+	let Images=new Image();
+	Images.src=`media/pic/${bg.url}.png`;
+	ImageArray.push(Images);
+	this["draw"]=context=>{context.drawImage(Images,bg.x,bg.y,bg.w,bg.h);}
+}
+function BUTTON(btn)
+{
+	let Images=[new Image(),new Image()];
+	Images.forEach((v,i)=>{
+		v.src=`media/pic/${btn.url[i]}.png`;
+		ImageArray.push(v);}
+		);
+	let ww=[btn.w,btn.w*0.9,btn.w*1.1];
+	let hh=[btn.h,btn.h*0.9,btn.h*1.1];
+	let xx=[btn.x,btn.x+(ww[0]-ww[1])/2,btn.x-(ww[2]-ww[0])/2];
+	let yy=[btn.y,btn.y+(hh[0]-hh[1])/2,btn.y-(hh[2]-hh[0])/2];
+	this.PlayOnce=true;
+	this["w"]=i=>ww[i];
+	this["h"]=i=>hh[i];
+	this["x"]=i=>xx[i];
+	this["y"]=i=>yy[i];
+	this["drawNotCheck"]=(context,bs)=>{
+		context.clearRect(xx[2],yy[2],ww[2],hh[2]);
+		context.drawImage(Images[0],xx[bs],yy[bs],ww[bs],hh[bs]);
+	};
+	this["drawIsCheck"]=(context,bs)=>{
+		context.clearRect(xx[2],yy[2],ww[2],hh[2]);
+		context.drawImage(Images[1],xx[bs],yy[bs],ww[bs],hh[bs]);
+	};
 }

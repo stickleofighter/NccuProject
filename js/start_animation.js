@@ -5,30 +5,6 @@ var cbtn;
 
 var skips;
 
-function SKIP(x,y,w,h)//665 385 75 30
-{
-	let Images=new Image();
-	Images.src="media/pic/main_page/skip.png";
-	ImageArray.push(Images);
-	let PlayOnce=true;
-	let ww=[w,w*0.9,w*1.1];
-	let hh=[h,h*0.9,h*1.1];
-	let xx=[x,x+(ww[0]-ww[1])/2,x-(ww[2]-ww[0])/2];
-	let yy=[y,y+(hh[0]-hh[1])/2,y-(hh[2]-hh[0])/2];
-	return{
-		get w(){return ww;},
-		get h(){return hh;},
-		get x(){return xx;},
-		get y(){return yy;},
-		get MovePlayOnce(){return PlayOnce;},
-		set MovePlayOnce(tf){PlayOnce=tf;},
-		draw: (bs)=>{
-			cbtn.clearRect(xx[2],yy[2],ww[2],hh[2]);
-			cbtn.drawImage(Images,xx[bs],yy[bs],ww[bs],hh[bs]);
-		}
-	};
-}
-
 function vidEndCheck()
 {
 	let vid=$("#VIDEO1")
@@ -46,44 +22,44 @@ function touchEventHandler()
 	let Mpos;
 	let MouseMoveHandler=e=>
 	{
-		Mpos=getMousePos(e);
-		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0]))
+		Mpos=new getMousePos(e);
+		if(areaCheck(Mpos,skips,0))
 		{
-			 skips.draw(2);
-			 if(skips.MovePlayOnce)
+			 skips.drawNotCheck(cbtn,2);
+			 if(skips.PlayOnce)
 			 {
-				skips.MovePlayOnce=false;
+				skips.PlayOnce=false;
 				voices[1].stop();
 				voices[1].play();
 			 }
 		}
 		else 
 		{
-			skips.draw(0);
-			skips.MovePlayOnce=true;
+			skips.drawNotCheck(cbtn,0);
+			skips.PlayOnce=true;
 		}
 	};
 	let MouseDownHandler=e=>
 	{
-		Mpos=getMousePos(e);
-		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0])) 
+		Mpos=new getMousePos(e);
+		if(areaCheck(Mpos,skips,0))
 		{
 			ctouchcheck.off("mousemove",MouseMoveHandler);
-			skips.draw(1);
+			skips.drawNotCheck(cbtn,1);
 			voices[2].stop();
 			voices[2].play();
 		}
-		else skips.draw(0);
+		else skips.drawNotCheck(cbtn,0);
 	};
 	let MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
-		skips.draw(0);
+		skips.drawNotCheck(cbtn,0);
 	};
 	let MouseClickHandler=e=>
 	{
-		Mpos=getMousePos(e);
-		if(areaCheck(Mpos.x,Mpos.y,skips.x[0],skips.y[0],skips.w[0],skips.h[0]))document.location.replace("start_page.html");
+		Mpos=new getMousePos(e);
+		if(areaCheck(Mpos,skips,0))document.location.replace("start_page.html");
 	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
@@ -104,13 +80,15 @@ function canvasContext()
 }
 function ObjConstruct()
 {
-	skips=SKIP(665,385,75,30);
+	let DATA=JSON.parse(setData);
+	let skip_btn=DATA.button.skip;
+	skips=new BUTTON(skip_btn);
 	initialSet();
 	voiceConstruct();
 }
 function SourceOnload()
 {
-	skips.draw(0);
+	skips.drawNotCheck(cbtn,0);
 	vidEndCheck();
 	touchEventHandler();
 }

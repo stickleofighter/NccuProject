@@ -1,0 +1,49 @@
+var setData=`{
+	"bg":{
+		"main":{
+			"url":"main_page/start_page",
+			"x":0,"y":0,"w":750,"h":420
+		}
+	},
+	"button":{
+		"skip":[
+			{
+				"url":[
+					"main_page/skip",
+					"main_page/skip"
+				],
+				"x": 665,"y": 385,"w": 75,"h": 30
+			}
+		],
+		"main":[
+			{
+				"url":[
+					"main_page/gamestart_btn1",
+					"main_page/gamestart_btn2"
+				],
+				"x": 340,"y": 285,"w": 152,"h": 44
+			},
+			{
+				"url":[
+					"main_page/set_btn1",
+					"main_page/set_btn2"
+				],
+				"x": 525,"y": 285,"w": 152,"h": 44
+			},
+			{
+				"url":[
+					"main_page/team_btn1",
+					"main_page/team_btn2"
+				],
+				"x": 340,"y": 350,"w": 152,"h": 44
+			},
+			{
+				"url":[
+					"main_page/quesmake_btn1",
+					"main_page/quesmake_btn2"
+				],
+				"x": 525,"y": 350,"w": 152,"h": 44
+			}
+		]
+	}
+}`
