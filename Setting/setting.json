@@ -3,6 +3,10 @@ var setData=`{
 		"main":{
 			"url":"main_page/start_page",
 			"x":0,"y":0,"w":750,"h":420
+		},
+		"team":{
+			"url":"main_page/team_page",
+			"x":0,"y":0,"w":750,"h":420
 		}
 	},
 	"button":{
@@ -43,6 +47,15 @@ var setData=`{
 					"main_page/quesmake_btn2"
 				],
 				"x": 525,"y": 350,"w": 152,"h": 44
+			}
+		],
+		"teamset":[
+			{
+				"url":[
+					"main_page/back_1",
+					"main_page/back_2"
+				],
+				"x": 575,"y": 300,"w": 68,"h": 44
 			}
 		]
 	}
