@@ -82,7 +82,7 @@ function ObjConstruct()
 {
 	let DATA=JSON.parse(setData);
 	let skip_btn=DATA.button.skip;
-	skips=new BUTTON(skip_btn);
+	skips=new BUTTON(skip_btn[0]);
 	initialSet();
 	voiceConstruct();
 }
