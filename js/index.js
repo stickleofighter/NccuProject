@@ -31,7 +31,7 @@ function valueInsert(e)
 	xhr.open("get", "Setting/setting.json", true);
     xhr.send();
 	xhr.onload=()=>{
-		let transaction=db.transaction(["os1"],"readwrite");
+		let transaction=db.transaction(["dataSet"],"readwrite");
 		let objectStore=transaction.objectStore("dataSet");
 		let DATA=JSON.parse(xhr.responseText);
 		let req1=objectStore.put(DATA.bg);
