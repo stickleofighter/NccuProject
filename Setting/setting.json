@@ -1,4 +1,4 @@
-var setData=`{
+{
 	"bg":{
 		"main":{
 			"url":"main_page/start_page",
@@ -7,7 +7,8 @@ var setData=`{
 		"team":{
 			"url":"main_page/team_page",
 			"x":0,"y":0,"w":750,"h":420
-		}
+		},
+		"kind": "bg"
 	},
 	"button":{
 		"skip":[
@@ -57,6 +58,7 @@ var setData=`{
 				],
 				"x": 575,"y": 300,"w": 68,"h": 44
 			}
-		]
+		],
+		"kind": "button"
 	}
-}`
+}
