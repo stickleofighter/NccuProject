@@ -28,19 +28,19 @@ function rupgradeneeded(e)
 function valueInsert(e)
 {
 	let xhr= new XMLHttpRequest();
-	let transaction=e.target.transaction;
-	let objectStore=transaction.objectStore("dataSet");
 	xhr.open("get", "Setting/setting.json", true);
     xhr.send();
 	xhr.onload=()=>{
+		let transaction=e.target.transaction;
+		let objectStore=transaction.objectStore("dataSet");
 		let DATA=JSON.parse(xhr.responseText);
 		let req1=objectStore.put(DATA.bg);
 		let req2=objectStore.put(DATA.button);
-	};
-	transaction.oncomplete=e=>{
+		transaction.oncomplete=e=>{
 		console.log("事務完成！");
 		//window.location.href="MonopolyLearn.html";
 	}
+	};
 }
 /*
 var request=indexedDB.open("testdb",1);
