@@ -20,11 +20,11 @@
         var xhr = new XMLHttpRequest();
 
         xhr.onload = function () {            
-            display(xhr.responseText);
+            console.log(JSON.parse(xhr.responseText));
         };
 
         try {
-            xhr.open("get", "TESTfile.txt", true);
+            xhr.open("get", "TESTfile.json", true);
             xhr.send();
         }
         catch (ex) {
