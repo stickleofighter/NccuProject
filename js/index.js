@@ -12,6 +12,7 @@ window.onload=()=>{
 function rsuccess(e)
 {
 	console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
+	valueInsert(e);
 }
 function rerror(e)
 {
@@ -23,7 +24,6 @@ function rupgradeneeded(e)
 	console.log(`版本更新...`);
 	let objectStore=db.createObjectStore("dataSet",{keyPath:"kind"});
 	let objectStore2=db.createObjectStore("quesDatabase",{keyPath:"id"});
-	valueInsert(e);
 }
 function valueInsert(e)
 {
@@ -31,7 +31,7 @@ function valueInsert(e)
 	xhr.open("get", "Setting/setting.json", true);
     xhr.send();
 	xhr.onload=()=>{
-		let transaction=db.transaction(["dataSet"],"readwrite");
+		let transaction=e.target.transaction;
 		let objectStore=transaction.objectStore("dataSet");
 		let DATA=JSON.parse(xhr.responseText);
 		let req1=objectStore.put(DATA.bg);
