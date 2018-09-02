@@ -28,7 +28,7 @@ function rupgradeneeded(e)
 function valueInsert()
 {
 	let xhr= new XMLHttpRequest();
-	let transaction=db.transaction(["dataSet"],"readwrite");
+	let transaction=e.target.transaction;
 	let objectStore=transaction.objectStore("dataSet");
 	xhr.open("get", "Setting/setting.json", true);
     xhr.send();
@@ -37,7 +37,7 @@ function valueInsert()
 		let req1=objectStore.put(DATA.bg);
 		let req2=objectStore.put(DATA.button);
 	};
-	transaction.onsuccess=e=>{
+	transaction.oncomplete=e=>{
 		console.log("事務完成！");
 		window.location.href="MonopolyLearn.html";
 	}
