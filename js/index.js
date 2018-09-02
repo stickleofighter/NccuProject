@@ -23,9 +23,9 @@ function rupgradeneeded(e)
 	console.log(`版本更新...`);
 	let objectStore=db.createObjectStore("dataSet",{keyPath:"kind"});
 	let objectStore2=db.createObjectStore("quesDatabase",{keyPath:"id"});
-	valueInsert();
+	valueInsert(e);
 }
-function valueInsert()
+function valueInsert(e)
 {
 	let xhr= new XMLHttpRequest();
 	let transaction=e.target.transaction;
