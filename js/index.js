@@ -26,7 +26,6 @@ function rupgradeneeded(e)
 	let objectStore=db.createObjectStore("dataSet",{keyPath:"kind"});
 	let objectStore2=db.createObjectStore("quesDatabase",{keyPath:"id"});
 }
-function 
 function valueInsert()
 {
 	return new Promise((res,rej)=>{
