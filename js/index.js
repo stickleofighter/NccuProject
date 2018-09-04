@@ -48,7 +48,7 @@ function DBSetValue()
 		xhr.open("get", "Setting/setting.json", true);
 		xhr.send();
 		xhr.onload=()=>{res(xhr.responseText);};
-	}}).then(data=>{
+	}})).then(data=>{
 		console.log(`開始輸入資料`)
 		return new Promise((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
@@ -66,7 +66,7 @@ function DBSetValue()
 	}).then(()=>{
 		console.log("事務完成！");
 		//window.location.href="MonopolyLearn.html";
-	})}).catch(e=>{console.log(e)})
+	}}).catch(e=>{console.log(e)})
 }
 function valueInsert()
 {
