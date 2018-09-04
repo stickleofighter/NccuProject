@@ -26,6 +26,7 @@ function rupgradeneeded(e)
 	let objectStore=db.createObjectStore("dataSet",{keyPath:"kind"});
 	let objectStore2=db.createObjectStore("quesDatabase",{keyPath:"id"});
 }
+function 
 function valueInsert()
 {
 	return new Promise((res,rej)=>{
@@ -34,7 +35,8 @@ function valueInsert()
 		xhr.send();
 		xhr.onload=()=>{res(xhr.responseText);};
 	}).then(data=>{
-		return new Promise((res,rej)=>{
+		console.log(`開始輸入資料`)
+		return ((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
 			let objectStore=transaction.objectStore("dataSet");
 			let DATA=JSON.parse(data);
