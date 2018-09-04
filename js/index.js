@@ -28,6 +28,24 @@ function rupgradeneeded(e)
 	let objectStore=db.createObjectStore("dataSet",{keyPath:"kind"});
 	let objectStore2=db.createObjectStore("quesDatabase",{keyPath:"id"});
 }
+function DBSetValue()
+{
+	return new Promise((res,rej)=>{			
+		request=indexedDB.open("MonopolyLearnData",1);
+		request.onsuccess=e=>{
+			db=e.target.result;
+			console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
+			res();
+		}
+		request.onerror=e=>{rej(e.target.errorCode);}
+		request.onupgradeneeded=e=>{
+			db=e.target.result;
+			console.log(`版本更新...`);
+			let objectStore=db.createObjectStore("dataSet",{keyPath:"kind"});
+			let objectStore2=db.createObjectStore("quesDatabase",{keyPath:"id"});
+		}
+	});
+}
 function xhrGet()
 {
 	return new Promise((res,rej)=>{
@@ -62,24 +80,6 @@ function inputEnd()
 function Error(e)
 {
 	console.log(e);
-}
-function DBSetValue()
-{
-	return new Promise((res,rej)=>{			
-		request=indexedDB.open("MonopolyLearnData",1);
-		request.onsuccess=e=>{
-			db=e.target.result;
-			console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
-			res();
-		}
-		request.onerror=e=>{rej(e.target.errorCode);}
-		request.onupgradeneeded=()=>{
-			db=e.target.result;
-			console.log(`版本更新...`);
-			let objectStore=db.createObjectStore("dataSet",{keyPath:"kind"});
-			let objectStore2=db.createObjectStore("quesDatabase",{keyPath:"id"});
-		}
-	});
 }
 function valueInsert()
 {
