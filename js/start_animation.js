@@ -78,23 +78,58 @@ function canvasContext()
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
 }
-function ObjConstruct()
-{
-	let DATA=JSON.parse(setData);
-	let skip_btn=DATA.button.skip;
-	skips=new BUTTON(skip_btn[0]);
-	initialSet();
-	voiceConstruct();
-}
+
+
 function SourceOnload()
 {
 	skips.drawNotCheck(cbtn,0);
 	vidEndCheck();
 	touchEventHandler();
 }
-
+function getData()
+{
+	let request;
+	let db;
+	let skip_btn;
+	let dbget=()=>{
+		return new Promise((res,rej)=>{			
+			request=indexedDB.open("MonopolyLearnData",1);
+			request.onsuccess=e=>{
+				db=e.target.result;
+				console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
+				res();
+			}
+			request.onerror=e=>{rej(e.target.errorCode);}
+		});
+	};
+	let dataget=()=>{
+		console.log(`開始取得資料`);
+		return new Promise((res,rej)=>{
+			let transaction=db.transaction(["dataSet"],"readwrite");
+			let objectStore=transaction.objectStore("dataSet");
+			let DATA=JSON.parse(data);
+			let req=objectStore.get("button");
+			req.onsuccess=e=>{
+				skip_btn=e.target.result.skip;
+			}
+			transaction.oncomplete=e=>{
+				res();
+			};
+			transaction.onerror=e=>{
+				rej(e.target.errorCode);
+			}
+		});
+	};
+	let ObjConstruct=()=>{
+		skips=new BUTTON(skip_btn[0]);
+		initialSet();
+		voiceConstruct();
+		SourceLoadCheck(SourceOnload);
+	};
+	let Error=e=>{console.log(e);};
+	dbget().then(dataget).then(ObjConstruct).catch(Error);
+}
 $(document).ready(()=>{
 	canvasContext();
-	ObjConstruct();
-	SourceLoadCheck(SourceOnload)
+	getData();
 });

@@ -8,6 +8,7 @@ var cbtn;
 var bg;
 var buttons=new Array();
 
+
 function touchEventHandler()
 {
 	let Mpos;
@@ -65,6 +66,7 @@ function touchEventHandler()
 	ctouchcheck.on("mouseup",MouseUpHandler);
 	ctouchcheck.on("click",MouseClickHandler);
 }
+
 
 function canvasContext()
 {
