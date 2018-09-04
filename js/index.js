@@ -9,7 +9,7 @@ window.onload=()=>{
 	request.onerror=rerror;
 	request.onupgradeneeded=rupgradeneeded;*/
 	//DBSetValue();
-	DBSetValue.then(xhrGet).then(dataInput).then(inputEnd).catch(Error);
+	DBSetValue().then(xhrGet).then(dataInput).then(inputEnd).catch(Error);
 };
 function rsuccess(e)
 {
