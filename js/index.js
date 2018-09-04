@@ -53,7 +53,7 @@ function dataInput(data)
 function inputEnd()
 {
 	console.log("事務完成！");
-	//window.location.href="MonopolyLearn.html";
+	window.location.href="MonopolyLearn.html";
 }
 function Error(e)
 {
