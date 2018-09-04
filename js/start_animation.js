@@ -107,7 +107,6 @@ function getData()
 		return new Promise((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
 			let objectStore=transaction.objectStore("dataSet");
-			let DATA=JSON.parse(data);
 			let req=objectStore.get("button");
 			req.onsuccess=e=>{
 				skip_btn=e.target.result.skip;
