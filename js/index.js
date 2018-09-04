@@ -13,7 +13,7 @@ function rsuccess(e)
 {
 	db=e.target.result;
 	console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
-	valueInsert(e);
+	valueInsert();
 }
 function rerror(e)
 {
@@ -26,9 +26,32 @@ function rupgradeneeded(e)
 	let objectStore=db.createObjectStore("dataSet",{keyPath:"kind"});
 	let objectStore2=db.createObjectStore("quesDatabase",{keyPath:"id"});
 }
-function valueInsert(e)
+function valueInsert()
 {
-	let xhr= new XMLHttpRequest();
+	return new Promise((res,rej)=>{
+		let xhr= new XMLHttpRequest();
+		xhr.open("get", "Setting/setting.json", true);
+		xhr.send();
+		xhr.onload=()=>{res(xhr.responseText);};
+	}).then(data=>{
+		return new Promise((res,rej)=>{
+			let transaction=db.transaction(["dataSet"],"readwrite");
+			let objectStore=transaction.objectStore("dataSet");
+			let DATA=JSON.parse(data);
+			let req1=objectStore.put(DATA.bg);
+			let req2=objectStore.put(DATA.button);
+			transaction.oncomplete=e=>{
+				res();
+			};
+			transaction.onerror=e=>{
+				rej(e);
+			}
+		});
+	},e=>{console.log(`error: ${e.message}`)}).then(()=>{
+		console.log("事務完成！");
+		//window.location.href="MonopolyLearn.html";
+	},e=>{console.log(`error: ${e.message}`)});
+	/*let xhr= new XMLHttpRequest();
 	xhr.open("get", "Setting/setting.json", true);
     xhr.send();
 	xhr.onload=()=>{
@@ -41,10 +64,10 @@ function valueInsert(e)
 		console.log("事務完成！");
 		//window.location.href="MonopolyLearn.html";
 	}
-	};
+	};*/
 }
 /*
-var request=indexedDB.open("testdb",1);
+var request=indexedDB.open("testdb",1);E
 var db;
 
 function data(id,a,b,c)
