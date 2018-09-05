@@ -101,7 +101,7 @@ function getData()
 				Promise.all(literal).then(()=>{res();}).catch(e=>{console.log(e)});
 			});
 		};
-		let finish=()=>{loadCheck=true;resolve();};
+		let finish=()=>{console.log("建構完成");loadCheck=true;resolve();};
 		let Error=e=>{console.log(e);};
 		
 		dbget().then(dataget).then(objectConstruct).then(allVolCheck).then(finish).catch(Error);
