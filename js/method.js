@@ -90,7 +90,7 @@ function loadingdraw(over=true)
 	ctcrk.font=circle.font;
 	if(!over)
 	{
-		ctcrk.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,circle.r*3,circle.r*3);
+		ctcrk.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,500,circle.r*3);
 		clearInterval(t_lod);
 	}
 	else{
