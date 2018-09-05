@@ -40,48 +40,8 @@ function SourceLoadCheck(callback)
 		callback();
 	}).catch(e=>{console.log(e);});
 }
-/*function loadingdraw(over=true)
-{
-	let counts=0;
-	ctcrk.lineWidth=5;
-	if(!over)
-	{
-		ctcrk.clearRect(300,135,150,150);
-		clearInterval(t_lod);
-	}
-	else{
-		t_lod=setInterval(()=>{
-		switch(counts)
-		{
-			case 0:
-				ctcrk.clearRect(300,135,150,150);
-				ctcrk.beginPath();
-				ctcrk.arc(375,210,50,0,3*Math.PI/9);
-				ctcrk.arc(375,210,50,6*Math.PI/9,9*Math.PI/9);
-				ctcrk.arc(375,210,50,12*Math.PI/9,15*Math.PI/9);
-				ctcrk.stroke();
-				break;
-			case 1:
-				ctcrk.clearRect(300,135,150,150);
-				ctcrk.beginPath();
-				ctcrk.arc(375,210,50,Math.PI/9,4*Math.PI/9);
-				ctcrk.arc(375,210,50,7*Math.PI/9,10*Math.PI/9);
-				ctcrk.arc(375,210,50,13*Math.PI/9,16*Math.PI/9);
-				ctcrk.stroke();
-				break;
-			case 2:
-				ctcrk.clearRect(300,135,150,150);
-				ctcrk.beginPath();
-				ctcrk.arc(375,210,50,2*Math.PI/9,5*Math.PI/9);
-				ctcrk.arc(375,210,50,8*Math.PI/9,11*Math.PI/9);
-				ctcrk.arc(375,210,50,14*Math.PI/9,17*Math.PI/9);
-				ctcrk.stroke();
-				break;
-		}
-		counts=counts==2?0:counts;
-		},150);
-	}
-}*/
+
+
 function BG(bg)
 {
 	let Images=new Image();
@@ -113,4 +73,51 @@ function BUTTON(btn)
 		context.clearRect(xx[2],yy[2],ww[2],hh[2]);
 		context.drawImage(Images[1],xx[bs],yy[bs],ww[bs],hh[bs]);
 	};
+}
+
+
+function loadingdraw(over=true)
+{
+	let counts=0;
+	let circle={
+		x:200,
+		y:210,
+		r:20,
+		lw:3,
+		font:"30px Arial"
+	};
+	ctcrk.lineWidth=circle.lw;
+	ctcrk.font=circle.font;
+	if(!over)
+	{
+		ctcrk.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,circle.r*3,circle.r*3);
+		clearInterval(t_lod);
+	}
+	else{
+		t_lod=setInterval(()=>{
+				ctcrk.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,500,circle.r*3);
+				ctcrk.beginPath();
+				ctcrk.arc(circle.x,circle.y,circle.r,counts*Math.PI/9,(counts+3)*Math.PI/9);
+				ctcrk.stroke();
+				ctcrk.beginPath();
+				ctcrk.arc(circle.x,circle.y,circle.r,(counts+6)*Math.PI/9,(counts+9)*Math.PI/9);
+				ctcrk.stroke();
+				ctcrk.beginPath();
+				ctcrk.arc(circle.x,circle.y,circle.r,(counts+12)*Math.PI/9,(counts+15)*Math.PI/9);
+				ctcrk.stroke();
+				switch(counts)
+				{
+					case 0:case 1:
+						ctcrk.fillText("Loading .",circle.x+circle.r*2,circle.y+circle.r/2);
+						break;
+					case 2:case 3:
+						ctcrk.fillText("Loading . .",circle.x+circle.r*2,circle.y+circle.r/2);
+						break;
+					case 4:case 5:
+						ctcrk.fillText("Loading . . .",circle.x+circle.r*2,circle.y+circle.r/2);
+						break;
+				}
+			counts=counts==5?0:counts+1;
+		},60);
+	}
 }
