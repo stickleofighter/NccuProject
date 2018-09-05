@@ -29,6 +29,8 @@ function voiceControl(url)
 		voice.volume=num*0.005;
 	};
 	this["ended"]=()=>voice.ended;
+	
+	this["addEventListener"]=(attribute,func)=>{voice.addEventListener(attribute,func)};
 }
 function getData()
 {
