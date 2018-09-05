@@ -79,25 +79,26 @@ function getData()
 			});
 		};
 		let allVolCheck=()=>{
-			let lc=vol=>{
-				return new Promise((rs,rj)=>{
-					vol.addEventListener("canplaythrough",()=>{
-						rs();
+			return new Promise((res,rej)=>{
+				let lc=vol=>{
+					return new Promise((rs,rj)=>{
+						vol.addEventListener("canplaythrough",()=>{
+							rs();
+						});
 					});
+				};
+				let literal=new Array();
+				literal.push(lc(bgm));
+				voices.forEach(v=>{
+					literal.push(lc(v));
 				});
-			};
-			let literal=new Array();
-			literal.push(lc(bgm));
-			voices.forEach(v=>{
-				literal.push(lc(v));
+				Promise.all(literal).then(()=>{res();}).catch(e=>{console.log(e)});
 			});
-			return literal;
 		};
 		let finish=()=>{loadCheck=true;resolve();};
 		let Error=e=>{console.log(e);};
 		
-		Promise.all([dbget(),dataget(),objectConstruct(),...allVolCheck()]).then(finish).catch(Error);
-		//dbget().then(dataget).then(objectConstruct).all(allVolCheck).then(finish).catch(Error);
+		dbget().then(dataget).then(objectConstruct).then(allVolCheck).then(finish).catch(Error);
 	});
 }
 
