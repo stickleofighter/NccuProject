@@ -88,6 +88,7 @@ function SourceOnload()
 }
 function getData()
 {
+	let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexed;
 	let request;
 	let db;
 	let skip_btn;
