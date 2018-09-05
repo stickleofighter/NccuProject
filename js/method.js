@@ -83,7 +83,7 @@ function SourceLoadCheck(callback)
 function BG(bg)
 {
 	let Images=new Image();
-	Images.src=`media/pic/${bg.url}.png`;
+	Images.src=bg.url;
 	ImageArray.push(Images);
 	this["draw"]=context=>{context.drawImage(Images,bg.x,bg.y,bg.w,bg.h);}
 }
@@ -91,7 +91,7 @@ function BUTTON(btn)
 {
 	let Images=[new Image(),new Image()];
 	Images.forEach((v,i)=>{
-		v.src=`media/pic/${btn.url[i]}.png`;
+		v.src=btn.url[i];
 		ImageArray.push(v);}
 		);
 	let ww=[btn.w,btn.w*0.9,btn.w*1.1];
