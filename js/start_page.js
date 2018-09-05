@@ -86,6 +86,7 @@ function getData()
 	let buttons_btn=new Array();
 	let bg_btn;
 	let dbget=()=>{
+		loadingdraw(true);
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
@@ -130,7 +131,7 @@ function getData()
 };
 function SourceOnload()
 {
-	//loadingdraw(false);
+	loadingdraw(false);
 	bg.draw(cbg);
 	for(let i in buttons) buttons[i].drawNotCheck(cbtn,0);
 	bgm.play();

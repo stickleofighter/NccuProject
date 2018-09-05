@@ -78,6 +78,7 @@ function canvasContext()
 
 function SourceOnload()
 {
+	loadingdraw(false);
 	skips.drawNotCheck(cbtn,0);
 	vidEndCheck();
 	touchEventHandler();
@@ -89,6 +90,7 @@ function getData()
 	let db;
 	let skip_btn;
 	let dbget=()=>{
+		loadingdraw(true);
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
