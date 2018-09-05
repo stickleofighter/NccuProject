@@ -69,6 +69,7 @@ function getData()
 			});
 		};
 		let objectConstruct=()=>{
+			console.log(`開始音訊建構...`)
 			return new Promise((res,rej)=>{
 				bgm=new voiceControl(bgm_vol.url);
 				voices_vol.forEach(v=>{
@@ -95,7 +96,8 @@ function getData()
 		let finish=()=>{loadCheck=true;resolve();};
 		let Error=e=>{console.log(e);};
 		
-		dbget().then(dataget).then(objectConstruct).all(allVolCheck).then(finish).catch(Error);
+		Promise.all([dbget(),dataget(),objectConstruct(),...allVolCheck()]).then(finish).catch(Error);
+		//dbget().then(dataget).then(objectConstruct).all(allVolCheck).then(finish).catch(Error);
 	});
 }
 
