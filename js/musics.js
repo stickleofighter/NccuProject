@@ -35,7 +35,11 @@ function voiceControl(url)
 function getData()
 {
 	return new Promise((resolve,reject)=>{
-		if(loadCheck)resolve();
+		if(loadCheck)
+		{
+			resolve();
+			return;
+		}
 		let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexed;
 		let request;
 		let db;
