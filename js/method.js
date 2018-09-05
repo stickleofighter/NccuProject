@@ -28,7 +28,19 @@ function voiceConstruct()
 }
 function SourceLoadCheck(callback)
 {
-	let t_img=setInterval(()=>{
+	let imgload=img=>new Promise((res,rej)=>{
+		img.onload=()=>{res();}
+	});
+	let ilArray=new Array();
+	ImageArray.forEach((v,i)=>{
+		ilArray[i]=imgload(v);
+	});
+	Promise.all(ilArray).then(()=>{
+		ImageArray.length=0;
+		callback();
+	}).catch(e=>{console.log(e);})
+	
+	/*let t_img=setInterval(()=>{
 		if(ImageArray.every((img)=>{
 			return img.height>0&&img.width>0;
 		})&&voiCheck){
@@ -36,7 +48,7 @@ function SourceLoadCheck(callback)
 			ImageArray.length=0;
 			callback();
 		}
-	},100)
+	},100)*/
 }
 /*function loadingdraw(over=true)
 {
