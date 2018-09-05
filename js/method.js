@@ -35,7 +35,7 @@ function SourceLoadCheck(callback)
 	ImageArray.forEach((v,i)=>{
 		ilArray[i]=imgload(v);
 	});
-	Promise.all(ilArray).then(()=>{
+	Promise.all(ilArray).then(parent.frames['music'].getData).then(()=>{
 		ImageArray.length=0;
 		callback();
 	}).catch(e=>{console.log(e);})

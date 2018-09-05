@@ -42,12 +42,7 @@ function dataInput(data)
 			let DATA=JSON.parse(data);
 			let req1=objectStore.put(DATA.bg);
 			let req2=objectStore.put(DATA.button);
-			req1.onerror=e=>{
-				rej(e.target.errorCode);
-			};
-			req2.onerror=e=>{
-				rej(e.target.errorCode);
-			}
+			let req3=objectStore.put(DATA.sound);
 			transaction.oncomplete=e=>{
 				res();
 			};

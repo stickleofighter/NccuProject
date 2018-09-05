@@ -67,10 +67,6 @@ function touchEventHandler()
 	ctouchcheck.on("click",MouseClickHandler);
 }
 
-function initialSet()
-{
-	localStorage["voiceloadcheck"]=JSON.stringify(false);
-}
 function canvasContext()
 {
 	ctouchcheck=$("#touchfeel");
@@ -122,7 +118,6 @@ function getData()
 	};
 	let ObjConstruct=()=>{
 		skips=new BUTTON(skip_btn[0]);
-		initialSet();
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
 	};
