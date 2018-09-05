@@ -38,17 +38,7 @@ function SourceLoadCheck(callback)
 	Promise.all(ilArray).then(parent.frames['music'].getData).then(()=>{
 		ImageArray.length=0;
 		callback();
-	}).catch(e=>{console.log(e);})
-	
-	/*let t_img=setInterval(()=>{
-		if(ImageArray.every((img)=>{
-			return img.height>0&&img.width>0;
-		})&&voiCheck){
-			clearInterval(t_img),
-			ImageArray.length=0;
-			callback();
-		}
-	},100)*/
+	}).catch(e=>{console.log(e);});
 }
 /*function loadingdraw(over=true)
 {
