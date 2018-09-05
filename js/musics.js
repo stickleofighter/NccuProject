@@ -77,7 +77,7 @@ function getData()
 				res();
 			});
 		};
-		let loadCheck=()=>{
+		let allVolCheck=()=>{
 			let lc=vol=>{
 				return new Promise((rs,rj)=>{
 					vol.addEventListener("canplaythrough",()=>{
@@ -95,7 +95,7 @@ function getData()
 		let finish=()=>{loadCheck=true;resolve();};
 		let Error=e=>{console.log(e);};
 		
-		dbget().then(dataget).then(objectConstruct).all(loadCheck).then(finish).catch(Error);
+		dbget().then(dataget).then(objectConstruct).all(allVolCheck).then(finish).catch(Error);
 	});
 }
 
