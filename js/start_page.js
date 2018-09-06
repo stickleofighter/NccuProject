@@ -58,17 +58,7 @@ function touchEventHandler()
 	let MouseClickHandler=e=>
 	{
 		Mpos=new getMousePos(e);
-		for(let i in buttons) 
-			if(areaCheck(Mpos,buttons[i],0))
-			{
-				console.log("inside"+i);
-				switch(i)
-				{
-					case 2:
-						document.location.replace("team_page.html");
-						break;
-				}
-			}
+		if(areaCheck(Mpos,buttons[2],0)) document.location.replace("team_page.html");
 	};
 	let MouseOutHandler=MouseUpHandler;
 	ctouchcheck.on("mousemove",MouseMoveHandler);
