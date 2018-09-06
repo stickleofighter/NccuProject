@@ -61,10 +61,14 @@ function touchEventHandler()
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,skips,0))document.location.replace("start_page.html");
 	};
+	let MouseOutHandler=e=>{
+		skips.drawNotCheck(cbtn,0);
+	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
 	ctouchcheck.on("click",MouseClickHandler);
+	ctouchcheck.on("mouseout",MouseOutHandler);
 }
 
 function canvasContext()

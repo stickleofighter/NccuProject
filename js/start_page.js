@@ -61,10 +61,14 @@ function touchEventHandler()
 		for(let i in buttons) 
 			if(areaCheck(Mpos,buttons[i],0))console.log("inside"+i);
 	};
+	let MouseOutHandler=e=>{
+		for(let i in buttons) buttons[i].drawNotCheck(cbtn,0);
+	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
 	ctouchcheck.on("click",MouseClickHandler);
+	ctouchcheck.on("mouseout",MouseOutHandler);
 }
 
 
@@ -135,7 +139,6 @@ function SourceOnload()
 	bg.draw(cbg);
 	for(let i in buttons) buttons[i].drawNotCheck(cbtn,0);
 	bgm.play();
-	bgm.loop=true;
 	touchEventHandler();
 }
 
