@@ -63,6 +63,7 @@ function touchEventHandler()
 	};
 	let MouseOutHandler=e=>{
 		skips.drawNotCheck(cbtn,0);
+		ctouchcheck.on("mousemove",MouseMoveHandler);
 	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
