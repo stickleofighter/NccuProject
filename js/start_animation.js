@@ -54,16 +54,14 @@ function touchEventHandler()
 	let MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
-		skips.drawNotCheck(cbtn,0);
+		if(areaCheck(Mpos,skips,0)) skips.drawNotCheck(cbtn,0);
 	};
 	let MouseClickHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,skips,0))document.location.replace("start_page.html");
 	};
-	let MouseOutHandler=e=>{
-		skips.drawNotCheck(cbtn,0);
-		ctouchcheck.on("mousemove",MouseMoveHandler);
+	let MouseOutHandler=MouseUpHandler;
 	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);

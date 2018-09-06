@@ -59,12 +59,18 @@ function touchEventHandler()
 	{
 		Mpos=new getMousePos(e);
 		for(let i in buttons) 
-			if(areaCheck(Mpos,buttons[i],0))console.log("inside"+i);
+			if(areaCheck(Mpos,buttons[i],0))
+			{
+				console.log("inside"+i);
+				switch(i)
+				{
+					case 2:
+						document.location.replace("team_page.html");
+						break;
+				}
+			}
 	};
-	let MouseOutHandler=e=>{
-		for(let i in buttons) buttons[i].drawNotCheck(cbtn,0);
-		ctouchcheck.on("mousemove",MouseMoveHandler);
-	};
+	let MouseOutHandler=MouseUpHandler;
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
@@ -81,7 +87,6 @@ function canvasContext()
 	cbg=cbackground[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
-	//loadingdraw(true);
 }
 function getData()
 {
@@ -133,7 +138,7 @@ function getData()
 	};
 	let Error=e=>{console.log(e);};
 	dbget().then(dataget).then(ObjConstruct).catch(Error);
-};
+}
 function SourceOnload()
 {
 	loadingdraw(false);
