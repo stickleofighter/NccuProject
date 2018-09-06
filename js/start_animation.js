@@ -62,7 +62,6 @@ function touchEventHandler()
 		if(areaCheck(Mpos,skips,0))document.location.replace("start_page.html");
 	};
 	let MouseOutHandler=MouseUpHandler;
-	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
