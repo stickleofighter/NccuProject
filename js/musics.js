@@ -85,6 +85,7 @@ function getData()
 			});
 		};
 		let allVolCheck=()=>{
+			console.log(`開始載入測試...`);
 			return new Promise((res,rej)=>{
 				let lc=vol=>{
 					return new Promise((rs,rj)=>{
