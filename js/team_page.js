@@ -111,7 +111,7 @@ function getData()
 	};
 	let ObjConstruct=()=>{
 		bg=new BG(bg_img);
-		back_btn=new Button(back_img);
+		back_btn=new BUTTON(back_img);
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
 	};
