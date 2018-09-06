@@ -81,6 +81,7 @@ function getData()
 				voices_vol.forEach(v=>{
 					voices.push(new voiceControl(v.url));
 				});
+				bgm.loop(true);
 				res();
 			});
 		};

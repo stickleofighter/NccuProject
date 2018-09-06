@@ -1,7 +1,6 @@
 var ImageArray=new Array();
 var bgm;
 var voices=new Array();
-var voiCheck=false;
 var t_lod;
 
 function areaCheck(Mouse,target,bs)
@@ -21,7 +20,6 @@ function voiceConstruct()
 {
 	bgm=parent.frames['music'].bgm;
 	voices=parent.frames['music'].voices;
-	voiCheck=true;	
 }
 function SourceLoadCheck(callback)
 {
