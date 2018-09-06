@@ -9,6 +9,13 @@ function voiceControl(url)
 	voice.src=url;
 	VoiceArray.push(voice);
 	voice.volume=0.5;
+	let playPromise;
+	let pause2=()=>{
+		if(playPromise!==undefined)
+		{
+			playPromise.then(()=>{voice.pause();}).catch(e=>console.log(e));
+		}
+	}
 	this["muteswitch"]=()=>{
 		voice.muted=!voice.muted;
 	};
@@ -16,10 +23,10 @@ function voiceControl(url)
 		voice.play();
 	};
 	this["pause"]=()=>{
-		voice.pause();
+		pause2();
 	};
 	this["stop"]=()=>{
-		voice.pause();
+		pause2();
 		voice.currentTime=0;
 	};
 	this["loop"]=(tf=true)=>{
