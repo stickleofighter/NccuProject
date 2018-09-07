@@ -1,7 +1,6 @@
 var ImageArray=new Array();
 var bgm;
 var voices=new Array();
-var t_lod;
 
 function areaCheck(Mouse,target,bs)
 {
@@ -74,50 +73,54 @@ function BUTTON(btn)
 		};
 	}
 }
-
-
-function loadingdraw(over=true)
+function LOADING(context)
 {
-	let counts=0;
-	let circle={
-		x:200,
-		y:210,
-		r:20,
-		lw:3,
-		font:"30px Arial"
-	};
-	ctcrk.lineWidth=circle.lw;
-	ctcrk.font=circle.font;
-	if(!over)
+	function Print()
 	{
-		ctcrk.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,500,circle.r*3);
-		clearInterval(t_lod);
+		this["x"]=200;
+		this["y"]=210;
+		this["r"]=20;
+		this["lw"]=3;
+		this["font"]=["30px Arial","10px Arial"];
 	}
-	else{
+	let message;
+	let counts=0;
+	let t_lod;
+	let print=new Print();
+	this["message"]=mes=>{
+		typeof(mes)=="string"?message=mes:message="等待中...";
+	}
+	this["overloading"]=()=>{
+		context.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,700,500);
+		clearInterval(t_lod);
+	};
+	this["startloading"]=()=>{
 		t_lod=setInterval(()=>{
-				ctcrk.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,500,circle.r*3);
-				ctcrk.beginPath();
-				ctcrk.arc(circle.x,circle.y,circle.r,counts*Math.PI/9,(counts+3)*Math.PI/9);
-				ctcrk.stroke();
-				ctcrk.beginPath();
-				ctcrk.arc(circle.x,circle.y,circle.r,(counts+6)*Math.PI/9,(counts+9)*Math.PI/9);
-				ctcrk.stroke();
-				ctcrk.beginPath();
-				ctcrk.arc(circle.x,circle.y,circle.r,(counts+12)*Math.PI/9,(counts+15)*Math.PI/9);
-				ctcrk.stroke();
-				switch(counts)
-				{
-					case 0:case 1:
-						ctcrk.fillText("Loading .",circle.x+circle.r*2,circle.y+circle.r/2);
-						break;
-					case 2:case 3:
-						ctcrk.fillText("Loading . .",circle.x+circle.r*2,circle.y+circle.r/2);
-						break;
-					case 4:case 5:
-						ctcrk.fillText("Loading . . .",circle.x+circle.r*2,circle.y+circle.r/2);
-						break;
-				}
+			ctcrk.lineWidth=circle.lw;
+			ctcrk.font=circle.font;
+			context.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,500,500);
+			context.beginPath();
+			context.arc(circle.x,circle.y,circle.r,counts*Math.PI/9,(counts+3)*Math.PI/9);
+			context.stroke();
+			context.beginPath();
+			context.arc(circle.x,circle.y,circle.r,(counts+6)*Math.PI/9,(counts+9)*Math.PI/9);
+			context.stroke();
+			context.beginPath();
+			context.arc(circle.x,circle.y,circle.r,(counts+12)*Math.PI/9,(counts+15)*Math.PI/9);
+			context.stroke();
+			switch(counts)
+			{
+				case 0:case 1:
+					context.fillText("Loading .",circle.x+circle.r*2,circle.y+circle.r/2);
+					break;
+				case 2:case 3:
+					context.fillText("Loading . .",circle.x+circle.r*2,circle.y+circle.r/2);
+					break;
+				case 4:case 5:
+					context.fillText("Loading . . .",circle.x+circle.r*2,circle.y+circle.r/2);
+					break;
+			}
 			counts=counts==5?0:counts+1;
 		},60);
-	}
+	};
 }

@@ -4,6 +4,7 @@ var cbackground;
 var cbg;
 var cbutton;
 var cbtn;
+var loading;
 
 var bg;
 var back_btn;
@@ -68,6 +69,7 @@ function canvasContext()
 	cbg=cbackground[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
+	loading=Object.freeze(new LOADING(ctcrk));
 }
 function getData()
 {
@@ -77,7 +79,7 @@ function getData()
 	let back_img;
 	let bg_img;
 	let dbget=()=>{
-		loadingdraw(true);
+		loading.startloading();
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
@@ -121,7 +123,7 @@ function getData()
 
 function SourceOnload()
 {
-	loadingdraw(false);
+	loading.overloading();
 	bg.draw(cbg);
 	back_btn.draw1(cbtn,0);
 	touchEventHandler();

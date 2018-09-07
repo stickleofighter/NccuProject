@@ -2,7 +2,7 @@ var ctouchcheck;
 var ctcrk;
 var cbutton;
 var cbtn;
-
+var loading;
 var skips;
 
 function vidEndCheck()
@@ -75,12 +75,13 @@ function canvasContext()
 	ctcrk=ctouchcheck[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
+	loading=Object.freeze(new LOADING(ctcrk));
 }
 
 
 function SourceOnload()
 {
-	loadingdraw(false);
+	loading.overloading();
 	skips.draw1(cbtn,0);
 	vidEndCheck();
 	touchEventHandler();
@@ -92,7 +93,7 @@ function getData()
 	let db;
 	let skip_btn;
 	let dbget=()=>{
-		loadingdraw(true);
+		loading.startloading();
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
