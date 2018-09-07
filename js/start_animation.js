@@ -81,7 +81,7 @@ function canvasContext()
 function SourceOnload()
 {
 	loadingdraw(false);
-	skips.drawNotCheck(cbtn,0);
+	skips.draw1(cbtn,0);
 	vidEndCheck();
 	touchEventHandler();
 }

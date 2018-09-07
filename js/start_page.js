@@ -135,7 +135,7 @@ function SourceOnload()
 {
 	loadingdraw(false);
 	bg.draw(cbg);
-	for(let i in buttons) buttons[i].drawNotCheck(cbtn,0);
+	for(let i in buttons) buttons[i].draw1(cbtn,0);
 	bgm.play();
 	touchEventHandler();
 }

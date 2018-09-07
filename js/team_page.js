@@ -123,7 +123,7 @@ function SourceOnload()
 {
 	loadingdraw(false);
 	bg.draw(cbg);
-	back_btn.drawNotCheck(cbtn,0);
+	back_btn.draw1(cbtn,0);
 	touchEventHandler();
 }
 
