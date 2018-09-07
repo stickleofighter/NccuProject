@@ -8,6 +8,7 @@ var cbtn;
 var bg;
 var buttons=new Array();
 
+
 function touchEventHandler()
 {
 	let Mpos;
@@ -57,14 +58,16 @@ function touchEventHandler()
 	let MouseClickHandler=e=>
 	{
 		Mpos=new getMousePos(e);
-		for(let i in buttons) 
-			if(areaCheck(Mpos,buttons[i],0))console.log("inside"+i);
+		if(areaCheck(Mpos,buttons[2],0)) document.location.replace("team_page.html");
 	};
+	let MouseOutHandler=MouseUpHandler;
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
 	ctouchcheck.on("click",MouseClickHandler);
+	ctouchcheck.on("mouseout",MouseOutHandler);
 }
+
 
 function canvasContext()
 {
@@ -74,31 +77,68 @@ function canvasContext()
 	cbg=cbackground[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
-	//loadingdraw(true);
 }
-function ObjConstruct()
+function getData()
 {
-	let DATA=JSON.parse(setData);
-	let bg_img=DATA.bg.main;
-	let button_btn=DATA.button.main;
-	bg=new BG(bg_img);
-	button_btn.forEach((v,i)=>{
-		buttons[i]=new BUTTON(v);
-	});
-	voiceConstruct();
+	let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexed;
+	let request;
+	let db;
+	let buttons_btn=new Array();
+	let bg_btn;
+	let dbget=()=>{
+		loadingdraw(true);
+		return new Promise((res,rej)=>{			
+			request=indexedDB.open("MonopolyLearnData",1);
+			request.onsuccess=e=>{
+				db=e.target.result;
+				console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
+				res();
+			}
+			request.onerror=e=>{rej(e.target.errorCode);}
+		});
+	};
+	let dataget=()=>{
+		console.log(`開始取得資料`);
+		return new Promise((res,rej)=>{
+			let transaction=db.transaction(["dataSet"],"readwrite");
+			let objectStore=transaction.objectStore("dataSet");
+			let req1=objectStore.get("bg");
+			let req2=objectStore.get("button");
+			req1.onsuccess=e=>{
+				bg_btn=e.target.result.main;
+			};
+			req2.onsuccess=e=>{
+				buttons_btn=e.target.result.main;
+			}
+			transaction.oncomplete=e=>{
+				res();
+			};
+			transaction.onerror=e=>{
+				rej(e.target.errorCode);
+			}
+		});
+	};
+	let ObjConstruct=()=>{
+		bg=new BG(bg_btn);
+		buttons_btn.forEach((v,i)=>{
+			buttons[i]=new BUTTON(v);
+		});
+		voiceConstruct();
+		SourceLoadCheck(SourceOnload);
+	};
+	let Error=e=>{console.log(e);};
+	dbget().then(dataget).then(ObjConstruct).catch(Error);
 }
 function SourceOnload()
 {
-	//loadingdraw(false);
+	loadingdraw(false);
 	bg.draw(cbg);
 	for(let i in buttons) buttons[i].drawNotCheck(cbtn,0);
 	bgm.play();
-	bgm.loop=true;
 	touchEventHandler();
 }
 
 $(document).ready(()=>{
 	canvasContext();
-	ObjConstruct();
-	SourceLoadCheck(SourceOnload);
+	getData();
 });

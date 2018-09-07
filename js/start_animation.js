@@ -54,23 +54,21 @@ function touchEventHandler()
 	let MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
-		skips.drawNotCheck(cbtn,0);
+		if(areaCheck(Mpos,skips,0)) skips.drawNotCheck(cbtn,0);
 	};
 	let MouseClickHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,skips,0))document.location.replace("start_page.html");
 	};
+	let MouseOutHandler=MouseUpHandler;
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
 	ctouchcheck.on("click",MouseClickHandler);
+	ctouchcheck.on("mouseout",MouseOutHandler);
 }
 
-function initialSet()
-{
-	localStorage["voiceloadcheck"]=JSON.stringify(false);
-}
 function canvasContext()
 {
 	ctouchcheck=$("#touchfeel");
@@ -78,23 +76,59 @@ function canvasContext()
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
 }
-function ObjConstruct()
-{
-	let DATA=JSON.parse(setData);
-	let skip_btn=DATA.button.skip;
-	skips=new BUTTON(skip_btn[0]);
-	initialSet();
-	voiceConstruct();
-}
+
+
 function SourceOnload()
 {
+	loadingdraw(false);
 	skips.drawNotCheck(cbtn,0);
 	vidEndCheck();
 	touchEventHandler();
 }
-
+function getData()
+{
+	let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexed;
+	let request;
+	let db;
+	let skip_btn;
+	let dbget=()=>{
+		loadingdraw(true);
+		return new Promise((res,rej)=>{			
+			request=indexedDB.open("MonopolyLearnData",1);
+			request.onsuccess=e=>{
+				db=e.target.result;
+				console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
+				res();
+			}
+			request.onerror=e=>{rej(e.target.errorCode);}
+		});
+	};
+	let dataget=()=>{
+		console.log(`開始取得資料`);
+		return new Promise((res,rej)=>{
+			let transaction=db.transaction(["dataSet"],"readwrite");
+			let objectStore=transaction.objectStore("dataSet");
+			let req=objectStore.get("button");
+			req.onsuccess=e=>{
+				skip_btn=e.target.result.skip;
+			}
+			transaction.oncomplete=e=>{
+				res();
+			};
+			transaction.onerror=e=>{
+				rej(e.target.errorCode);
+			}
+		});
+	};
+	let ObjConstruct=()=>{
+		skips=new BUTTON(skip_btn[0]);
+		voiceConstruct();
+		SourceLoadCheck(SourceOnload);
+	};
+	let Error=e=>{console.log(e);};
+	dbget().then(dataget).then(ObjConstruct).catch(Error);
+}
 $(document).ready(()=>{
 	canvasContext();
-	ObjConstruct();
-	SourceLoadCheck(SourceOnload)
+	getData();
 });

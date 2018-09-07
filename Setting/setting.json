@@ -1,11 +1,11 @@
 {
 	"bg":{
 		"main":{
-			"url":"main_page/start_page",
+			"url":"media/pic/main_page/start_page.png",
 			"x":0,"y":0,"w":750,"h":420
 		},
 		"team":{
-			"url":"main_page/team_page",
+			"url":"media/pic/main_page/team_page.png",
 			"x":0,"y":0,"w":750,"h":420
 		},
 		"kind": "bg"
@@ -14,8 +14,8 @@
 		"skip":[
 			{
 				"url":[
-					"main_page/skip",
-					"main_page/skip"
+					"media/pic/main_page/skip.png",
+					"media/pic/main_page/skip.png"
 				],
 				"x": 665,"y": 385,"w": 75,"h": 30
 			}
@@ -23,29 +23,29 @@
 		"main":[
 			{
 				"url":[
-					"main_page/gamestart_btn1",
-					"main_page/gamestart_btn2"
+					"media/pic/main_page/gamestart_btn1.png",
+					"media/pic/main_page/gamestart_btn2.png"
 				],
 				"x": 340,"y": 285,"w": 152,"h": 44
 			},
 			{
 				"url":[
-					"main_page/set_btn1",
-					"main_page/set_btn2"
+					"media/pic/main_page/set_btn1.png",
+					"media/pic/main_page/set_btn2.png"
 				],
 				"x": 525,"y": 285,"w": 152,"h": 44
 			},
 			{
 				"url":[
-					"main_page/team_btn1",
-					"main_page/team_btn2"
+					"media/pic/main_page/team_btn1.png",
+					"media/pic/main_page/team_btn2.png"
 				],
 				"x": 340,"y": 350,"w": 152,"h": 44
 			},
 			{
 				"url":[
-					"main_page/quesmake_btn1",
-					"main_page/quesmake_btn2"
+					"media/pic/main_page/quesmake_btn1.png",
+					"media/pic/main_page/quesmake_btn2.png"
 				],
 				"x": 525,"y": 350,"w": 152,"h": 44
 			}
@@ -53,12 +53,38 @@
 		"teamset":[
 			{
 				"url":[
-					"main_page/back_1",
-					"main_page/back_2"
+					"media/pic/main_page/back_1.png",
+					"media/pic/main_page/back_2.png"
 				],
 				"x": 575,"y": 300,"w": 68,"h": 44
 			}
 		],
 		"kind": "button"
+	},
+	"sound":{
+		"bgm":{
+			"url":"media/voice/bgm.mp3"
+		},
+		"voice":[
+			{
+				"url":"media/voice/001.mp3"
+			},
+			{
+				"url":"media/voice/002.mp3"
+			},
+			{
+				"url":"media/voice/003.mp3"
+			},
+			{
+				"url":"media/voice/004.mp3"
+			},
+			{
+				"url":"media/voice/005.mp3"
+			},
+			{
+				"url":"media/voice/006.mp3"
+			}
+		],
+		"kind": "sound"
 	}
 }
