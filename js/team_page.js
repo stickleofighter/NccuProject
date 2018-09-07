@@ -16,18 +16,18 @@ function touchEventHandler()
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,back_btn,0))
 		{
-			 back_btn.drawIsCheck(cbtn,2);
-			 if(back_btn.PlayOnce)
+			 back_btn.draw2(cbtn,2);
+			 if(back_btn.PlayOnce())
 			 {
-				back_btn.PlayOnce=false;
+				back_btn.PlayOnce(false);
 				voices[1].stop();
 				voices[1].play();
 			 }
 		}
 		else 
 		{
-			back_btn.drawNotCheck(cbtn,0);
-			back_btn.PlayOnce=true;
+			back_btn.draw1(cbtn,0);
+			back_btn.PlayOnce(true);
 		}
 	};
 	let MouseDownHandler=e=>
@@ -36,16 +36,16 @@ function touchEventHandler()
 		if(areaCheck(Mpos,back_btn,0))
 		{
 			ctouchcheck.off("mousemove",MouseMoveHandler);
-			back_btn.drawIsCheck(cbtn,1);
+			back_btn.draw2(cbtn,1);
 			voices[2].stop();
 			voices[2].play();
 		}
-		else back_btn.drawNotCheck(cbtn,0);
+		else back_btn.draw1(cbtn,0);
 	};
 	let MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
-		if(areaCheck(Mpos,back_btn,0)) back_btn.drawNotCheck(cbtn,0);
+		if(areaCheck(Mpos,back_btn,0)) back_btn.draw1(cbtn,0);
 	};
 	let MouseClickHandler=e=>
 	{
@@ -110,8 +110,8 @@ function getData()
 		});
 	};
 	let ObjConstruct=()=>{
-		bg=new BG(bg_img);
-		back_btn=new BUTTON(back_img[0]);
+		bg=Object.freeze(new BG(bg_img));
+		back_btn=Object.freeze(new BUTTON(back_img[0]));
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
 	};

@@ -46,7 +46,9 @@ function BG(bg)
 }
 function BUTTON(btn)
 {
-	let Images=[new Image(),new Image()];
+	let num=btn.url.length;
+	let Images=new Array();
+	for(let i=0;i<num;i++) Images.push(new Image());
 	Images.forEach((v,i)=>{
 		v.src=btn.url[i];
 		ImageArray.push(v);}
@@ -55,19 +57,22 @@ function BUTTON(btn)
 	let hh=[btn.h,btn.h*0.9,btn.h*1.1];
 	let xx=[btn.x,btn.x+(ww[0]-ww[1])/2,btn.x-(ww[2]-ww[0])/2];
 	let yy=[btn.y,btn.y+(hh[0]-hh[1])/2,btn.y-(hh[2]-hh[0])/2];
-	this.PlayOnce=true;
+	let PlayOnce=true;
 	this["w"]=i=>ww[i];
 	this["h"]=i=>hh[i];
 	this["x"]=i=>xx[i];
 	this["y"]=i=>yy[i];
-	this["drawNotCheck"]=(context,bs)=>{
-		context.clearRect(xx[2],yy[2],ww[2],hh[2]);
-		context.drawImage(Images[0],xx[bs],yy[bs],ww[bs],hh[bs]);
+	this["PlayOnce"]=(...ar)=>{
+		if(ar.length===0)return PlayOnce;
+		else ar.length==1&&typeof(ar[0])=="boolean"?PlayOnce=ar[0]:PlayOnce=true;
 	};
-	this["drawIsCheck"]=(context,bs)=>{
-		context.clearRect(xx[2],yy[2],ww[2],hh[2]);
-		context.drawImage(Images[1],xx[bs],yy[bs],ww[bs],hh[bs]);
-	};
+	for(let i=0;i<num;i++)
+	{
+		this[`draw${i+1}`]=(context,bs)=>{
+			context.clearRect(xx[2],yy[2],ww[2],hh[2]);
+			context.drawImage(Images[i],xx[bs],yy[bs],ww[bs],hh[bs]);
+		};
+	}
 }
 
 

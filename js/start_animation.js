@@ -25,18 +25,18 @@ function touchEventHandler()
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,skips,0))
 		{
-			 skips.drawNotCheck(cbtn,2);
-			 if(skips.PlayOnce)
+			 skips.draw1(cbtn,2);
+			 if(skips.PlayOnce())
 			 {
-				skips.PlayOnce=false;
+				skips.PlayOnce(false);
 				voices[1].stop();
 				voices[1].play();
 			 }
 		}
 		else 
 		{
-			skips.drawNotCheck(cbtn,0);
-			skips.PlayOnce=true;
+			skips.draw1(cbtn,0);
+			skips.PlayOnce(true);
 		}
 	};
 	let MouseDownHandler=e=>
@@ -45,16 +45,16 @@ function touchEventHandler()
 		if(areaCheck(Mpos,skips,0))
 		{
 			ctouchcheck.off("mousemove",MouseMoveHandler);
-			skips.drawNotCheck(cbtn,1);
+			skips.draw1(cbtn,1);
 			voices[2].stop();
 			voices[2].play();
 		}
-		else skips.drawNotCheck(cbtn,0);
+		else skips.draw1(cbtn,0);
 	};
 	let MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
-		if(areaCheck(Mpos,skips,0)) skips.drawNotCheck(cbtn,0);
+		if(areaCheck(Mpos,skips,0)) skips.draw1(cbtn,0);
 	};
 	let MouseClickHandler=e=>
 	{
@@ -121,7 +121,7 @@ function getData()
 		});
 	};
 	let ObjConstruct=()=>{
-		skips=new BUTTON(skip_btn[0]);
+		skips=Object.freeze(new BUTTON(skip_btn[0]));
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
 	};

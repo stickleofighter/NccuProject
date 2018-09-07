@@ -19,18 +19,18 @@ function touchEventHandler()
 		{
 			if(areaCheck(Mpos,buttons[i],0))
 			{
-				buttons[i].drawIsCheck(cbtn,2);
-				if(buttons[i].PlayOnce)
+				buttons[i].draw2(cbtn,2);
+				if(buttons[i].PlayOnce())
 				{
-					buttons[i].PlayOnce=false;
+					buttons[i].PlayOnce(false);
 					voices[1].stop();
 					voices[1].play();
 				}
 			}
 			else
 			{
-				buttons[i].PlayOnce=true;
-				buttons[i].drawNotCheck(cbtn,0);
+				buttons[i].PlayOnce(true);
+				buttons[i].draw1(cbtn,0);
 			}
 		}
 	};
@@ -42,20 +42,20 @@ function touchEventHandler()
 			if(areaCheck(Mpos,buttons[i],0))
 			{
 				ctouchcheck.off("mousemove",MouseMoveHandler);
-				buttons[i].drawIsCheck(cbtn,1);
+				buttons[i].draw2(cbtn,1);
 				voices[2].stop();
 				voices[2].play();
 			}
-			else buttons[i].drawNotCheck(cbtn,0);
+			else buttons[i].draw1(cbtn,0);
 		}
 	};
 	let MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
-		if(areaCheck(Mpos,buttons[0],0))buttons[0].drawIsCheck(cbtn,2);
-		if(areaCheck(Mpos,buttons[1],0))buttons[1].drawIsCheck(cbtn,2);
-		if(areaCheck(Mpos,buttons[2],0))buttons[2].drawIsCheck(cbtn,2);
-		if(areaCheck(Mpos,buttons[3],0))buttons[3].drawIsCheck(cbtn,2);
+		if(areaCheck(Mpos,buttons[0],0))buttons[0].draw2(cbtn,2);
+		if(areaCheck(Mpos,buttons[1],0))buttons[1].draw2(cbtn,2);
+		if(areaCheck(Mpos,buttons[2],0))buttons[2].draw2(cbtn,2);
+		if(areaCheck(Mpos,buttons[3],0))buttons[3].draw2(cbtn,2);
 	};
 	let MouseClickHandler=e=>
 	{
@@ -121,9 +121,9 @@ function getData()
 		});
 	};
 	let ObjConstruct=()=>{
-		bg=new BG(bg_btn);
+		bg=Object.freeze(new BG(bg_btn));
 		buttons_btn.forEach((v,i)=>{
-			buttons[i]=new BUTTON(v);
+			buttons[i]=Object.freeze(new BUTTON(v));
 		});
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
