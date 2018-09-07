@@ -100,7 +100,6 @@ function getData()
 			request.onsuccess=e=>{
 				db=e.target.result;
 				console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
-				loading.message(`已連線資料庫`);
 				res();
 			}
 			request.onerror=e=>{rej(e.target.errorCode);}
@@ -126,10 +125,10 @@ function getData()
 		});
 	};
 	const ObjConstruct=()=>{
+		loading.message(`正在建立遊戲物件`);
 		skips=Object.freeze(new BUTTON(skip_btn[0]));
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
-		loading.message(`已建立實體`);
 	};
 	const Error=e=>{console.log(e);};
 	dbget().then(dataget).then(ObjConstruct).catch(Error);

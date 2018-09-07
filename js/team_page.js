@@ -79,6 +79,7 @@ function getData()
 	let bg_img;
 	const dbget=()=>{
 		loading.startloading();
+		loading.message(`正在連線資料庫`);
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
@@ -91,6 +92,7 @@ function getData()
 	};
 	const dataget=()=>{
 		console.log(`開始取得資料`);
+		loading.message(`正在獲取資料`);
 		return new Promise((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
 			let objectStore=transaction.objectStore("dataSet");
@@ -111,6 +113,7 @@ function getData()
 		});
 	};
 	const ObjConstruct=()=>{
+		loading.message(`正在建立遊戲物件`);
 		bg=Object.freeze(new BG(bg_img));
 		back_btn=Object.freeze(new BUTTON(back_img[0]));
 		voiceConstruct();

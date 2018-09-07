@@ -98,7 +98,6 @@ function getData()
 			request.onsuccess=e=>{
 				db=e.target.result;
 				console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
-				loading.message(`已連線資料庫`);
 				res();
 			}
 			request.onerror=e=>{rej(e.target.errorCode);}
@@ -119,7 +118,6 @@ function getData()
 				buttons_btn=e.target.result.main;
 			}
 			transaction.oncomplete=e=>{
-				loading.message(`已獲取資料`);
 				res();
 			};
 			transaction.onerror=e=>{
@@ -128,13 +126,13 @@ function getData()
 		});
 	};
 	const ObjConstruct=()=>{
+		loading.message(`正在建立遊戲物件`);
 		bg=Object.freeze(new BG(bg_btn));
 		buttons_btn.forEach((v,i)=>{
 			buttons[i]=Object.freeze(new BUTTON(v));
 		});
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
-		loading.message(`已建立實體`);
 	};
 	const Error=e=>{console.log(e);};
 	dbget().then(dataget).then(ObjConstruct).catch(Error);
