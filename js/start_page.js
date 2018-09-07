@@ -62,7 +62,9 @@ function touchEventHandler()
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,buttons[2],0)) document.location.replace("team_page.html");
 	};
-	let MouseOutHandler=MouseUpHandler;
+	let MouseOutHandler=e=>{
+		for(let i in buttons) buttons[i].draw1(cbtn,0);
+	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
