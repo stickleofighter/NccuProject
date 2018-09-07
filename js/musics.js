@@ -7,7 +7,6 @@ function voiceControl(url)
 {
 	const voice=new Audio();
 	voice.src=url;
-	VoiceArray.push(voice);
 	voice.volume=0.5;
 	let playPromise;
 	const pause2=()=>{
