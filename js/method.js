@@ -91,33 +91,33 @@ function LOADING(context)
 		typeof(mes)=="string"?message=mes:message="等待中...";
 	}
 	this["overloading"]=()=>{
-		context.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,700,500);
+		context.clearRect(print.x-1.5*print.r,print.y-1.5*print.r,700,500);
 		clearInterval(t_lod);
 	};
 	this["startloading"]=()=>{
 		t_lod=setInterval(()=>{
-			ctcrk.lineWidth=circle.lw;
-			ctcrk.font=circle.font;
-			context.clearRect(circle.x-1.5*circle.r,circle.y-1.5*circle.r,500,500);
+			ctcrk.lineWidth=print.lw;
+			ctcrk.font=print.font[0];
+			context.clearRect(print.x-1.5*print.r,print.y-1.5*print.r,500,500);
 			context.beginPath();
-			context.arc(circle.x,circle.y,circle.r,counts*Math.PI/9,(counts+3)*Math.PI/9);
+			context.arc(print.x,print.y,print.r,counts*Math.PI/9,(counts+3)*Math.PI/9);
 			context.stroke();
 			context.beginPath();
-			context.arc(circle.x,circle.y,circle.r,(counts+6)*Math.PI/9,(counts+9)*Math.PI/9);
+			context.arc(print.x,print.y,print.r,(counts+6)*Math.PI/9,(counts+9)*Math.PI/9);
 			context.stroke();
 			context.beginPath();
-			context.arc(circle.x,circle.y,circle.r,(counts+12)*Math.PI/9,(counts+15)*Math.PI/9);
+			context.arc(print.x,print.y,print.r,(counts+12)*Math.PI/9,(counts+15)*Math.PI/9);
 			context.stroke();
 			switch(counts)
 			{
 				case 0:case 1:
-					context.fillText("Loading .",circle.x+circle.r*2,circle.y+circle.r/2);
+					context.fillText("Loading .",print.x+print.r*2,print.y+print.r/2);
 					break;
 				case 2:case 3:
-					context.fillText("Loading . .",circle.x+circle.r*2,circle.y+circle.r/2);
+					context.fillText("Loading . .",print.x+print.r*2,print.y+print.r/2);
 					break;
 				case 4:case 5:
-					context.fillText("Loading . . .",circle.x+circle.r*2,circle.y+circle.r/2);
+					context.fillText("Loading . . .",print.x+print.r*2,print.y+print.r/2);
 					break;
 			}
 			counts=counts==5?0:counts+1;
