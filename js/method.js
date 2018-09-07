@@ -107,6 +107,9 @@ function LOADING()
 	};
 	this["startloading"]=()=>{
 		t_lod=setInterval(()=>{
+			context.lineWidth=print.lw[1];
+			context.font=print.font[1];
+			context.fillText(message,print.x+print.r*2,3*print.y+print.r/2);
 			context.lineWidth=print.lw[0];
 			context.font=print.font[0];
 			context.clearRect(0,0,750,420);
@@ -141,9 +144,6 @@ function LOADING()
 					context.fillText("Loading . . .",print.x+print.r*2,print.y+print.r/2);
 					break;
 			}
-			context.lineWidth=print.lw[1];
-			context.font=print.font[1];
-			context.fillText(message,print.x+print.r*2,3*print.y+print.r/2);
 			counts=counts==5?0:counts+1;
 		},60);
 	};
