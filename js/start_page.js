@@ -52,8 +52,10 @@ function touchEventHandler()
 	let MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
-		for(let i in buttons) 
-			if(areaCheck(Mpos,buttons[i],0))buttons[i].drawIsCheck(cbtn,2);
+		if(areaCheck(Mpos,buttons[0],0))buttons[0].drawIsCheck(cbtn,2);
+		if(areaCheck(Mpos,buttons[1],0))buttons[1].drawIsCheck(cbtn,2);
+		if(areaCheck(Mpos,buttons[2],0))buttons[2].drawIsCheck(cbtn,2);
+		if(areaCheck(Mpos,buttons[3],0))buttons[3].drawIsCheck(cbtn,2);
 	};
 	let MouseClickHandler=e=>
 	{
