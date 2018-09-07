@@ -41,7 +41,7 @@ function voiceControl(url)
 }
 function getData()
 {
-	loading=parent.frames['main'].loading;
+	loading=parent.frames['main'].getLoading();
 	return new Promise((resolve,reject)=>{
 		if(loadCheck)
 		{

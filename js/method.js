@@ -21,6 +21,10 @@ function voiceConstruct()
 	bgm=parent.frames['music'].bgm;
 	voices=parent.frames['music'].voices;
 }
+function getLoading()
+{
+	return loading;
+}
 function SourceLoadCheck(callback)
 {
 	let imgload=img=>new Promise((res,rej)=>{
