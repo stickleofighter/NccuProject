@@ -11,7 +11,7 @@ var back_btn;
 function touchEventHandler()
 {
 	let Mpos;
-	let MouseMoveHandler=e=>
+	const MouseMoveHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,back_btn,0))
@@ -30,7 +30,7 @@ function touchEventHandler()
 			back_btn.PlayOnce(true);
 		}
 	};
-	let MouseDownHandler=e=>
+	const MouseDownHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,back_btn,0))
@@ -42,17 +42,17 @@ function touchEventHandler()
 		}
 		else back_btn.draw1(cbtn,0);
 	};
-	let MouseUpHandler=e=>
+	const MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
 		if(areaCheck(Mpos,back_btn,0)) back_btn.draw1(cbtn,0);
 	};
-	let MouseClickHandler=e=>
+	const MouseClickHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,back_btn,0))document.location.replace("start_page.html");
 	};
-	let MouseOutHandler=MouseUpHandler;
+	const MouseOutHandler=MouseUpHandler;
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
@@ -68,7 +68,7 @@ function canvasContext()
 	cbg=cbackground[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
-	loading=Object.freeze(new LOADING(ctcrk));
+	loading.setContext(ctcrk);
 }
 function getData()
 {
@@ -77,7 +77,7 @@ function getData()
 	let db;
 	let back_img;
 	let bg_img;
-	let dbget=()=>{
+	const dbget=()=>{
 		loading.startloading();
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
@@ -89,7 +89,7 @@ function getData()
 			request.onerror=e=>{rej(e.target.errorCode);}
 		});
 	};
-	let dataget=()=>{
+	const dataget=()=>{
 		console.log(`開始取得資料`);
 		return new Promise((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
@@ -110,13 +110,13 @@ function getData()
 			}
 		});
 	};
-	let ObjConstruct=()=>{
+	const ObjConstruct=()=>{
 		bg=Object.freeze(new BG(bg_img));
 		back_btn=Object.freeze(new BUTTON(back_img[0]));
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
 	};
-	let Error=e=>{console.log(e);};
+	const Error=e=>{console.log(e);};
 	dbget().then(dataget).then(ObjConstruct).catch(Error);
 }
 

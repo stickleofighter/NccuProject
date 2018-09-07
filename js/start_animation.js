@@ -20,7 +20,7 @@ function vidEndCheck()
 function touchEventHandler()
 {
 	let Mpos;
-	let MouseMoveHandler=e=>
+	const MouseMoveHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,skips,0))
@@ -39,7 +39,7 @@ function touchEventHandler()
 			skips.PlayOnce(true);
 		}
 	};
-	let MouseDownHandler=e=>
+	const MouseDownHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,skips,0))
@@ -51,17 +51,17 @@ function touchEventHandler()
 		}
 		else skips.draw1(cbtn,0);
 	};
-	let MouseUpHandler=e=>
+	const MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
 		if(areaCheck(Mpos,skips,0)) skips.draw1(cbtn,0);
 	};
-	let MouseClickHandler=e=>
+	const MouseClickHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,skips,0))document.location.replace("start_page.html");
 	};
-	let MouseOutHandler=MouseUpHandler;
+	const MouseOutHandler=MouseUpHandler;
 	ctouchcheck.on("mousemove",MouseMoveHandler);
 	ctouchcheck.on("mousedown",MouseDownHandler);
 	ctouchcheck.on("mouseup",MouseUpHandler);
@@ -75,7 +75,7 @@ function canvasContext()
 	ctcrk=ctouchcheck[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
-	loading=Object.freeze(new LOADING(ctcrk));
+	loading.setContext(ctcrk);
 }
 
 
@@ -92,7 +92,7 @@ function getData()
 	let request;
 	let db;
 	let skip_btn;
-	let dbget=()=>{
+	const dbget=()=>{
 		loading.startloading();
 		loading.message(`正在連線資料庫`);
 		return new Promise((res,rej)=>{			
@@ -106,7 +106,7 @@ function getData()
 			request.onerror=e=>{rej(e.target.errorCode);}
 		});
 	};
-	let dataget=()=>{
+	const dataget=()=>{
 		console.log(`開始取得資料`);
 		loading.message(`正在獲取資料`);
 		return new Promise((res,rej)=>{
@@ -125,13 +125,13 @@ function getData()
 			}
 		});
 	};
-	let ObjConstruct=()=>{
+	const ObjConstruct=()=>{
 		skips=Object.freeze(new BUTTON(skip_btn[0]));
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
 		loading.message(`已建立實體`);
 	};
-	let Error=e=>{console.log(e);};
+	const Error=e=>{console.log(e);};
 	dbget().then(dataget).then(ObjConstruct).catch(Error);
 }
 $(document).ready(()=>{

@@ -12,7 +12,7 @@ var buttons=new Array();
 function touchEventHandler()
 {
 	let Mpos;
-	let MouseMoveHandler=e=>
+	const MouseMoveHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		for(let i in buttons)
@@ -34,7 +34,7 @@ function touchEventHandler()
 			}
 		}
 	};
-	let MouseDownHandler=e=>
+	const MouseDownHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		for(let i in buttons)
@@ -49,7 +49,7 @@ function touchEventHandler()
 			else buttons[i].draw1(cbtn,0);
 		}
 	};
-	let MouseUpHandler=e=>
+	const MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
 		if(areaCheck(Mpos,buttons[0],0))buttons[0].draw2(cbtn,2);
@@ -57,12 +57,12 @@ function touchEventHandler()
 		if(areaCheck(Mpos,buttons[2],0))buttons[2].draw2(cbtn,2);
 		if(areaCheck(Mpos,buttons[3],0))buttons[3].draw2(cbtn,2);
 	};
-	let MouseClickHandler=e=>
+	const MouseClickHandler=e=>
 	{
 		Mpos=new getMousePos(e);
 		if(areaCheck(Mpos,buttons[2],0)) document.location.replace("team_page.html");
 	};
-	let MouseOutHandler=e=>{
+	const MouseOutHandler=e=>{
 		for(let i in buttons) buttons[i].draw1(cbtn,0);
 	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
@@ -81,7 +81,7 @@ function canvasContext()
 	cbg=cbackground[0].getContext("2d");
 	cbutton=$("#buttonimg");
 	cbtn=cbutton[0].getContext("2d");
-	loading=Object.freeze(new LOADING(ctcrk));
+	loading.setContext(ctcrk);
 }
 function getData()
 {
@@ -90,7 +90,7 @@ function getData()
 	let db;
 	let buttons_btn=new Array();
 	let bg_btn;
-	let dbget=()=>{
+	const dbget=()=>{
 		loading.startloading();
 		loading.message(`正在連線資料庫`);
 		return new Promise((res,rej)=>{			
@@ -104,7 +104,7 @@ function getData()
 			request.onerror=e=>{rej(e.target.errorCode);}
 		});
 	};
-	let dataget=()=>{
+	const dataget=()=>{
 		console.log(`開始取得資料`);
 		loading.message(`正在獲取資料`);
 		return new Promise((res,rej)=>{
@@ -127,7 +127,7 @@ function getData()
 			}
 		});
 	};
-	let ObjConstruct=()=>{
+	const ObjConstruct=()=>{
 		bg=Object.freeze(new BG(bg_btn));
 		buttons_btn.forEach((v,i)=>{
 			buttons[i]=Object.freeze(new BUTTON(v));
@@ -136,7 +136,7 @@ function getData()
 		SourceLoadCheck(SourceOnload);
 		loading.message(`已建立實體`);
 	};
-	let Error=e=>{console.log(e);};
+	const Error=e=>{console.log(e);};
 	dbget().then(dataget).then(ObjConstruct).catch(Error);
 }
 function SourceOnload()

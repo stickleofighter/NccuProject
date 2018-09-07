@@ -1,7 +1,7 @@
-var ImageArray=new Array();
+const ImageArray=new Array();
 var bgm;
 var voices=new Array();
-var loading;
+const loading=Object.freeze(new LOADING());
 
 function areaCheck(Mouse,target,bs)
 {
@@ -41,24 +41,24 @@ function SourceLoadCheck(callback)
 
 function BG(bg)
 {
-	let Images=new Image();
+	const Images=new Image();
 	Images.src=bg.url;
 	ImageArray.push(Images);
 	this["draw"]=context=>{context.drawImage(Images,bg.x,bg.y,bg.w,bg.h);}
 }
 function BUTTON(btn)
 {
-	let num=btn.url.length;
-	let Images=new Array();
+	const num=btn.url.length;
+	const Images=new Array();
 	for(let i=0;i<num;i++) Images.push(new Image());
 	Images.forEach((v,i)=>{
 		v.src=btn.url[i];
 		ImageArray.push(v);}
 		);
-	let ww=[btn.w,btn.w*0.9,btn.w*1.1];
-	let hh=[btn.h,btn.h*0.9,btn.h*1.1];
-	let xx=[btn.x,btn.x+(ww[0]-ww[1])/2,btn.x-(ww[2]-ww[0])/2];
-	let yy=[btn.y,btn.y+(hh[0]-hh[1])/2,btn.y-(hh[2]-hh[0])/2];
+	const ww=[btn.w,btn.w*0.9,btn.w*1.1];
+	const hh=[btn.h,btn.h*0.9,btn.h*1.1];
+	const xx=[btn.x,btn.x+(ww[0]-ww[1])/2,btn.x-(ww[2]-ww[0])/2];
+	const yy=[btn.y,btn.y+(hh[0]-hh[1])/2,btn.y-(hh[2]-hh[0])/2];
 	let PlayOnce=true;
 	this["w"]=i=>ww[i];
 	this["h"]=i=>hh[i];
@@ -76,7 +76,7 @@ function BUTTON(btn)
 		};
 	}
 }
-function LOADING(context)
+function LOADING()
 {
 	function Print()
 	{
@@ -86,10 +86,14 @@ function LOADING(context)
 		this["lw"]=[3,1];
 		this["font"]=["30px Arial","15px Arial"];
 	}
+	let context;
 	let message=`載入中`;
 	let counts=0;
 	let t_lod;
-	let print=new Print();
+	const print=new Print();
+	this["setContext"]=con=>{
+		context=con;
+	}
 	this["message"]=mes=>{
 		typeof(mes)=="string"?message=mes:message=`載入中`;
 	}
