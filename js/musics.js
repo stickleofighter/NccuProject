@@ -3,6 +3,8 @@ var VoiceArray=new Array();
 var bgm;
 var voices=new Array();
 var loadCheck=false;
+var loading;
+
 function voiceControl(url)
 {
 	let voice=new Audio();
@@ -41,6 +43,7 @@ function voiceControl(url)
 }
 function getData()
 {
+	loading=parent.frames['main'].loading;
 	return new Promise((resolve,reject)=>{
 		if(loadCheck)
 		{
@@ -53,11 +56,13 @@ function getData()
 		let bgm_vol;
 		let voices_vol=new Array();
 		let dbget=()=>{
+			loading.message(`正在連線資料庫`);
 			return new Promise((res,rej)=>{			
 				request=indexedDB.open("MonopolyLearnData",1);
 				request.onsuccess=e=>{
 					db=e.target.result;
 					console.log(`(音訊)indexedDB資料庫MonopolyLearnData打開成功`);
+					loading.message(`已連線資料庫`);
 					res();
 				}
 				request.onerror=e=>{rej(e.target.errorCode);}
@@ -65,6 +70,7 @@ function getData()
 		};
 		let dataget=()=>{	
 			console.log(`開始取得音訊資料`);
+			loading.message(`正在獲取資料`);
 			return new Promise((res,rej)=>{
 				let transaction=db.transaction(["dataSet"],"readwrite");
 				let objectStore=transaction.objectStore("dataSet");
@@ -74,6 +80,7 @@ function getData()
 					voices_vol=e.target.result.voice;
 				};
 				transaction.oncomplete=e=>{
+					loading.message(`已獲取資料`);
 					res();
 				};
 				transaction.onerror=e=>{
@@ -89,11 +96,13 @@ function getData()
 					voices.push(new voiceControl(v.url));
 				});
 				bgm.loop(true);
+				loading.message(`已建立音訊實體`);
 				res();
 			});
 		};
 		let allVolCheck=()=>{
 			console.log(`開始載入測試...`);
+			loading.message(`正在檢察音訊載入情況`);
 			return new Promise((res,rej)=>{
 				let lc=vol=>{
 					return new Promise((rs,rj)=>{
@@ -110,29 +119,19 @@ function getData()
 				Promise.all(literal).then(()=>{res();}).catch(e=>{console.log(e)});
 			});
 		};
-		let finish=()=>{console.log("建構完成");loadCheck=true;resolve();};
+		let finish=()=>{
+			console.log("建構完成");
+			loading.message(`音訊載入完成`);
+			loadCheck=true;
+			resolve();
+			};
 		let Error=e=>{console.log(e);};
 		
 		dbget().then(dataget).then(objectConstruct).then(allVolCheck).then(finish).catch(Error);
 	});
 }
 
-/*function voiceLoadCheck()
-{
-	let t_voi=setInterval(()=>{
-		if(VoiceArray.every(voi=>{
-		return voi.readyState==4;
-	}))
-	{
-		clearInterval(t_voi);
-		localStorage["voiceloadcheck"]=JSON.stringify(true);
-		parent.frames['main'].voiceConstruct();
-	}
-	},100)
-	
-}*/
+
 $(document).ready(()=>{
-	/*bgm=new voiceControl("bgm");
-	for(let i=0;i<6;i++) voices[i]=new voiceControl(`00${i+1}`);
-	voiceLoadCheck();*/
+
 })

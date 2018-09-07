@@ -2,7 +2,7 @@ var ctouchcheck;
 var ctcrk;
 var cbutton;
 var cbtn;
-var loading;
+
 var skips;
 
 function vidEndCheck()
@@ -94,11 +94,13 @@ function getData()
 	let skip_btn;
 	let dbget=()=>{
 		loading.startloading();
+		loading.message(`正在連線資料庫`);
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
 				db=e.target.result;
 				console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
+				loading.message(`已連線資料庫`);
 				res();
 			}
 			request.onerror=e=>{rej(e.target.errorCode);}
@@ -106,6 +108,7 @@ function getData()
 	};
 	let dataget=()=>{
 		console.log(`開始取得資料`);
+		loading.message(`正在獲取資料`);
 		return new Promise((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
 			let objectStore=transaction.objectStore("dataSet");
@@ -114,6 +117,7 @@ function getData()
 				skip_btn=e.target.result.skip;
 			}
 			transaction.oncomplete=e=>{
+				loading.message(`已獲取資料`);
 				res();
 			};
 			transaction.onerror=e=>{
@@ -125,6 +129,7 @@ function getData()
 		skips=Object.freeze(new BUTTON(skip_btn[0]));
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
+		loading.message(`已建立實體`);
 	};
 	let Error=e=>{console.log(e);};
 	dbget().then(dataget).then(ObjConstruct).catch(Error);

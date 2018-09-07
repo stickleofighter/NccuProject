@@ -4,7 +4,6 @@ var cbackground;
 var cbg;
 var cbutton;
 var cbtn;
-var loading;
 
 var bg;
 var back_btn;

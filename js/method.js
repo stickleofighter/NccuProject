@@ -1,6 +1,7 @@
 var ImageArray=new Array();
 var bgm;
 var voices=new Array();
+var loading;
 
 function areaCheck(Mouse,target,bs)
 {
@@ -29,7 +30,9 @@ function SourceLoadCheck(callback)
 	ImageArray.forEach((v,i)=>{
 		ilArray[i]=imgload(v);
 	});
+	loading.message(`正在檢察圖片載入情況`);
 	Promise.all(ilArray).then(parent.frames['music'].getData).then(()=>{
+		loading.message(`載入完成`);
 		ImageArray.length=0;
 		callback();
 	}).catch(e=>{console.log(e);});
@@ -80,25 +83,25 @@ function LOADING(context)
 		this["x"]=200;
 		this["y"]=210;
 		this["r"]=20;
-		this["lw"]=3;
-		this["font"]=["30px Arial","10px Arial"];
+		this["lw"]=[3,1];
+		this["font"]=["30px Arial","15px Arial"];
 	}
-	let message;
+	let message=`載入中`;
 	let counts=0;
 	let t_lod;
 	let print=new Print();
 	this["message"]=mes=>{
-		typeof(mes)=="string"?message=mes:message="等待中...";
+		typeof(mes)=="string"?message=mes:message=`載入中`;
 	}
 	this["overloading"]=()=>{
-		context.clearRect(print.x-1.5*print.r,print.y-1.5*print.r,700,500);
+		context.clearRect(0,0,750,420);
 		clearInterval(t_lod);
 	};
 	this["startloading"]=()=>{
 		t_lod=setInterval(()=>{
-			ctcrk.lineWidth=print.lw;
-			ctcrk.font=print.font[0];
-			context.clearRect(print.x-1.5*print.r,print.y-1.5*print.r,500,500);
+			context.lineWidth=print.lw[0];
+			context.font=print.font[0];
+			context.clearRect(0,0,750,420);
 			context.beginPath();
 			context.arc(print.x,print.y,print.r,counts*Math.PI/9,(counts+3)*Math.PI/9);
 			context.stroke();
@@ -107,6 +110,16 @@ function LOADING(context)
 			context.stroke();
 			context.beginPath();
 			context.arc(print.x,print.y,print.r,(counts+12)*Math.PI/9,(counts+15)*Math.PI/9);
+			context.stroke();
+			
+			context.beginPath();
+			context.arc(print.x,print.y,print.r/2,((5-counts)+12)*Math.PI/9,((5-counts)+15)*Math.PI/9);
+			context.stroke();
+			context.beginPath();
+			context.arc(print.x,print.y,print.r/2,((5-counts)+6)*Math.PI/9,((5-counts)+9)*Math.PI/9);
+			context.stroke();
+			context.beginPath();
+			context.arc(print.x,print.y,print.r/2,(5-counts)*Math.PI/9,((5-counts)+3)*Math.PI/9);
 			context.stroke();
 			switch(counts)
 			{
@@ -120,6 +133,9 @@ function LOADING(context)
 					context.fillText("Loading . . .",print.x+print.r*2,print.y+print.r/2);
 					break;
 			}
+			context.lineWidth=print.lw[1];
+			context.font=print.font[1];
+			context.fillText(message,print.x+print.r*2,3*print.y+print.r/2);
 			counts=counts==5?0:counts+1;
 		},60);
 	};
