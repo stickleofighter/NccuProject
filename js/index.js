@@ -43,6 +43,7 @@ function dataInput(data)
 			let req1=objectStore.put(DATA.bg);
 			let req2=objectStore.put(DATA.button);
 			let req3=objectStore.put(DATA.sound);
+			let req4=objectStore.put(DATA.video);
 			transaction.oncomplete=e=>{
 				res();
 			};

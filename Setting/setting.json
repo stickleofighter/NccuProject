@@ -85,5 +85,9 @@
 			}
 		],
 		"kind": "sound"
+	},
+	"video":{
+		"url":"media/video/start_video.mp4",
+		"kind":"video"
 	}
 }

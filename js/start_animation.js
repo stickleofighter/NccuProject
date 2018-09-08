@@ -92,6 +92,7 @@ function getData()
 	let request;
 	let db;
 	let skip_btn;
+	let vid_url;
 	const dbget=()=>{
 		loading.startloading();
 		loading.message(`正在連線資料庫`);
@@ -112,9 +113,13 @@ function getData()
 			let transaction=db.transaction(["dataSet"],"readwrite");
 			let objectStore=transaction.objectStore("dataSet");
 			let req=objectStore.get("button");
+			let req2=objectStore.get("video");
 			req.onsuccess=e=>{
 				skip_btn=e.target.result.skip;
-			}
+			};
+			req2.onsuccess=e=>{
+				vid_url=e.target.result.url;
+			};
 			transaction.oncomplete=e=>{
 				loading.message(`已獲取資料`);
 				res();
@@ -124,6 +129,32 @@ function getData()
 			}
 		});
 	};
+	const videoMake=()=>{
+		loading.message(`正在載入影片`);
+		return new Promise((res,rej)=>{
+			const vid=$("<video/>")
+				.attr("width","750")
+				.attr("height","420")
+				.attr("src",vid_url)
+				.attr("id","VIDEO1")
+				.addClass("cv")
+				.on("progress",()=>{
+					if(vid[0].buffered.length>0)
+					{
+						if(Math.round(vid[0].buffered.end(0))>=11)
+						{
+							vid[0].play();
+							res();
+						}
+						if(Math.round(vid[0].buffered.end(0)) / Math.round(vid[0].seekable.end(0)) === 1)console.log(`下載完畢`);
+					}
+				})
+				.on("ended",()=>{
+					console.log("播放完了");
+				})
+				$("div").append(vid);
+		});
+	};
 	const ObjConstruct=()=>{
 		loading.message(`正在建立遊戲物件`);
 		skips=Object.freeze(new BUTTON(skip_btn[0]));
@@ -131,7 +162,7 @@ function getData()
 		SourceLoadCheck(SourceOnload);
 	};
 	const Error=e=>{console.log(e);};
-	dbget().then(dataget).then(ObjConstruct).catch(Error);
+	dbget().then(dataget).then(videoMake).then(ObjConstruct).catch(Error);
 }
 $(document).ready(()=>{
 	canvasContext();
