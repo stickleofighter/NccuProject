@@ -142,7 +142,7 @@ function getData()
 				.on("ended",()=>{
 					console.log("播放完了");
 				})
-				startVideo=vid;
+				startVideo=vid[0];
 		});
 	};
 	const ObjConstruct=()=>{
