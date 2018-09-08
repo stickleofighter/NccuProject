@@ -63,6 +63,7 @@ function touchEventHandler()
 		if(areaCheck(Mpos,buttons[2],0)) document.location.replace("team_page.html");
 	};
 	const MouseOutHandler=e=>{
+		ctouchcheck.on("mousemove",MouseMoveHandler);
 		for(let i in buttons) buttons[i].draw1(cbtn,0);
 	};
 	ctouchcheck.on("mousemove",MouseMoveHandler);
