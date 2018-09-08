@@ -71,7 +71,6 @@ function SourceOnload()
 {
 	loading.overloading();
 	skips.draw1(cbtn,0);
-	vidEndCheck();
 	touchEventHandler();
 }
 function getData()
