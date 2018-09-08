@@ -140,7 +140,7 @@ function getData()
 					}
 				})
 				.on("ended",()=>{
-					console.log("播放完了");
+					document.location.replace("start_page.html");
 				})
 				startVideo=vid[0];
 		});
