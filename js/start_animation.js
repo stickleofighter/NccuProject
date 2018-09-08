@@ -131,11 +131,7 @@ function getData()
 				.on("progress",()=>{
 					if(vid[0].buffered.length>0)
 					{
-						if(Math.round(vid[0].buffered.end(0))>=11)
-						{
-							vid[0].play();
-							res();
-						}
+						if(Math.round(vid[0].buffered.end(0))>=11) res();
 						if(Math.round(vid[0].buffered.end(0)) / Math.round(vid[0].seekable.end(0)) === 1)console.log(`下載完畢`);
 					}
 				})
