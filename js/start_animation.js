@@ -4,6 +4,7 @@ var cbutton;
 var cbtn;
 
 var skips;
+var startVideo;
 
 function touchEventHandler()
 {
@@ -71,6 +72,8 @@ function SourceOnload()
 {
 	loading.overloading();
 	skips.draw1(cbtn,0);
+	$("div").append(startVideo);
+	startVideo.play();
 	touchEventHandler();
 }
 function getData()
@@ -139,7 +142,7 @@ function getData()
 				.on("ended",()=>{
 					console.log("播放完了");
 				})
-				$("div").append(vid);
+				startVideo=vid;
 		});
 	};
 	const ObjConstruct=()=>{
