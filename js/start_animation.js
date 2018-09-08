@@ -5,18 +5,6 @@ var cbtn;
 
 var skips;
 
-function vidEndCheck()
-{
-	let vid=$("#VIDEO1")
-	let a=setInterval(()=>
-	{
-		if(vid[0].ended)
-		{
-			clearInterval(a);
-			document.location.replace("start_page.html");
-		}
-	},10);
-}
 function touchEventHandler()
 {
 	let Mpos;
