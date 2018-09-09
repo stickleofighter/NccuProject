@@ -106,10 +106,10 @@ function LOADING()
 	{
 		let count=0,v_count=0;
 		let message;
-		const show()=>{
+		const show=()=>{
 			message=loadingState[count];
 		};
-		const v_show()=>{
+		const v_show=()=>{
 			message=loadingState[6][v_count];
 		}
 		this["start"]=()=>{
