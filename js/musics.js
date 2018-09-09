@@ -1,7 +1,7 @@
-var bgm;
-var voices=new Array();
-var loadCheck=false;
-var loading;
+let bgm;
+let voices=new Array();
+let loadCheck=false;
+let loading;
 
 function voiceControl(url)
 {
@@ -53,22 +53,20 @@ function getData()
 		let bgm_vol;
 		let voices_vol=new Array();
 		const dbget=()=>{
-		//	loading.message(`正在連線資料庫`);
 		loading.message().vstart();
 			return new Promise((res,rej)=>{			
 				request=indexedDB.open("MonopolyLearnData",1);
 				request.onsuccess=e=>{
 					db=e.target.result;
-					console.log(`(音訊)indexedDB資料庫MonopolyLearnData打開成功`);
+					//console.log(`(音訊)indexedDB資料庫MonopolyLearnData打開成功`);
 					res();
 				}
 				request.onerror=e=>{rej(e.target.errorCode);}
 			});
 		};
 		const dataget=()=>{	
-			console.log(`開始取得音訊資料`);
+			//console.log(`開始取得音訊資料`);
 			loading.message().vnext();
-			//loading.message(`正在獲取音訊資料`);
 			return new Promise((res,rej)=>{
 				let transaction=db.transaction(["dataSet"],"readwrite");
 				let objectStore=transaction.objectStore("dataSet");
@@ -86,9 +84,8 @@ function getData()
 			});
 		};
 		const objectConstruct=()=>{
-			console.log(`開始音訊建構...`)
+			//console.log(`開始音訊建構...`)
 			loading.message().vnext();
-			//loading.message(`正在建立音訊物件`);
 			return new Promise((res,rej)=>{
 				bgm=new voiceControl(bgm_vol.url);
 				voices_vol.forEach(v=>{
@@ -99,9 +96,8 @@ function getData()
 			});
 		};
 		const allVolCheck=()=>{
-			console.log(`開始載入測試...`);
+			//console.log(`開始載入測試...`);
 			loading.message().vnext();
-			//loading.message(`正在驗證音訊載入情況`);
 			return new Promise((res,rej)=>{
 				let lc=vol=>{
 					return new Promise((rs,rj)=>{
@@ -119,9 +115,8 @@ function getData()
 			});
 		};
 		const finish=()=>{
-			console.log("建構完成");
+			//console.log("建構完成");
 			loading.message().vnext();
-			//loading.message(`音訊載入完成`);
 			loadCheck=true;
 			resolve();
 			};

@@ -94,21 +94,19 @@ function getData()
 	const dbget=()=>{
 		loading.startloading();
 		loading.message().start().next();
-		//loading.message(`正在連線資料庫`);
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
 				db=e.target.result;
-				console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
+				//console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
 				res();
 			}
 			request.onerror=e=>{rej(e.target.errorCode);}
 		});
 	};
 	const dataget=()=>{
-		console.log(`開始取得資料`);
+		//console.log(`開始取得資料`);
 		loading.message().next();
-		//loading.message(`正在獲取資料`);
 		return new Promise((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
 			let objectStore=transaction.objectStore("dataSet");
@@ -130,7 +128,6 @@ function getData()
 	};
 	const ObjConstruct=()=>{
 		loading.message().next().next();
-		//loading.message(`正在建立遊戲物件`);
 		bg=Object.freeze(new BG(bg_btn));
 		buttons_btn.forEach((v,i)=>{
 			buttons[i]=Object.freeze(new BUTTON(v));
