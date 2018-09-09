@@ -38,6 +38,10 @@ function voiceControl(url)
 	
 	this["addEventListener"]=(attribute,func)=>{voice.addEventListener(attribute,func)};
 }
+function getObj()
+{
+	return [bgm,voices];
+}
 function getData()
 {
 	loading=parent.frames['main'].getLoading();

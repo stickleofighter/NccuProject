@@ -18,8 +18,7 @@ function getMousePos(e)
 }
 function voiceConstruct()
 {
-	bgm=parent.frames['music'].bgm;
-	voices=parent.frames['music'].voices;
+	[bgm,voices]=parent.frames['music'].getObj();
 }
 function getLoading()
 {
