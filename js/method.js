@@ -34,9 +34,9 @@ function SourceLoadCheck(callback)
 	ImageArray.forEach((v,i)=>{
 		ilArray[i]=imgload(v);
 	});
-	//loading.message(`正在檢察圖片載入情況`);
+	loading.message().next();
 	Promise.all(ilArray).then(parent.frames['music'].getData).then(()=>{
-	//	loading.message(`載入完成`);
+	loading.message().next().next();
 		ImageArray.length=0;
 		callback();
 	}).catch(e=>{console.log(e);});

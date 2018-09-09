@@ -124,6 +124,7 @@ function getData()
 	const videoMake=()=>{
 		loading.message().next();
 		//loading.message(`正在載入影片`);
+		console.log(`影片載入`);
 		return new Promise((res,rej)=>{
 			const vid=$("<video/>")
 				.attr("width","750")
@@ -134,7 +135,7 @@ function getData()
 				.on("progress",()=>{
 					if(vid[0].buffered.length>0)
 					{
-						if(Math.round(vid[0].buffered.end(0))>=11) res();
+						if(Math.round(vid[0].buffered.end(0))>=11) {console.log(`緩衝達標`);res();}
 						if(Math.round(vid[0].buffered.end(0)) / Math.round(vid[0].seekable.end(0)) === 1)console.log(`下載完畢`);
 					}
 				})
@@ -145,8 +146,9 @@ function getData()
 		});
 	};
 	const ObjConstruct=()=>{
+		console.log(`物件建立...`);
 		loading.message().next();
-		//loading.message(`正在建立遊戲物件`);
+		loading.message(`正在建立遊戲物件`);
 		skips=Object.freeze(new BUTTON(skip_btn[0]));
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
