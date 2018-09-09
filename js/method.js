@@ -99,7 +99,6 @@ function LOADING()
 		'載入完成'
 	];
 	let context;
-	let message;
 	let counts=0;
 	let t_lod;
 	function Message()
