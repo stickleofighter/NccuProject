@@ -132,17 +132,21 @@ function getData()
 				.attr("src",vid_url)
 				.attr("id","VIDEO1")
 				.addClass("cv")
-				.on("progress",()=>{
+				/*.on("progress",()=>{
 					if(vid[0].buffered.length>0)
 					{
 						console.log(vid[0].buffered.end(0));
 						if(Math.round(vid[0].buffered.end(0))>=11) {console.log(`緩衝達標`);res();}
 						if(Math.round(vid[0].buffered.end(0)) / Math.round(vid[0].seekable.end(0)) === 1)console.log(`下載完畢`);
 					}
+				})*/
+				.on("canplay",()=>{
+					console.log(`緩衝達標`);res();
 				})
 				.on("ended",()=>{
 					document.location.replace("start_page.html");
-				})
+				});
+				
 				startVideo=vid[0];
 		});
 	};
