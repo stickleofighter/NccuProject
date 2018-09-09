@@ -1,6 +1,6 @@
 let bgm;
 let voices=new Array();
-let loadCheck=false;
+var loadCheck=false;
 let loading;
 
 function voiceControl(url)
