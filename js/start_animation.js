@@ -135,6 +135,7 @@ function getData()
 				.on("progress",()=>{
 					if(vid[0].buffered.length>0)
 					{
+						console.log(vid[0].buffered.end(0));
 						if(Math.round(vid[0].buffered.end(0))>=11) {console.log(`緩衝達標`);res();}
 						if(Math.round(vid[0].buffered.end(0)) / Math.round(vid[0].seekable.end(0)) === 1)console.log(`下載完畢`);
 					}
