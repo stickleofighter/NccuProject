@@ -34,9 +34,9 @@ function SourceLoadCheck(callback)
 	ImageArray.forEach((v,i)=>{
 		ilArray[i]=imgload(v);
 	});
-	loading.message(`正在檢察圖片載入情況`);
+	//loading.message(`正在檢察圖片載入情況`);
 	Promise.all(ilArray).then(parent.frames['music'].getData).then(()=>{
-		loading.message(`載入完成`);
+	//	loading.message(`載入完成`);
 		ImageArray.length=0;
 		callback();
 	}).catch(e=>{console.log(e);});
@@ -82,6 +82,60 @@ function BUTTON(btn)
 }
 function LOADING()
 {
+	const loadingState=[
+		'載入中',
+		'正在連線資料庫',
+		'正在獲取資料',
+		'正在載入影片',
+		'正在建立遊戲物件',
+		'正在檢察圖片載入情況',
+		[
+			'(音訊)正在連線資料庫',
+			'開始取得音訊資料',
+			'正在建立音訊物件',
+			'正在檢查音訊載入情況',
+			'音訊載入完成',
+		],
+		'載入完成'
+	];
+	let context;
+	let message;
+	let counts=0;
+	let t_lod;
+	function Message()
+	{
+		let count=0,v_count=0;
+		let message;
+		const show()=>{
+			message=loadingState[count];
+		};
+		const v_show()=>{
+			message=loadingState[6][v_count];
+		}
+		this["start"]=()=>{
+			count=0;
+			show();
+			return this;
+		};
+		this["next"]=()=>{
+			count++;
+			show();
+			return this;
+		};
+		this["vstart"]=()=>{
+			v_count=0;
+			v_show();
+			return this;
+		};
+		this["vnext"]=()=>{
+			v_count++;
+			v_show();
+			return this;
+		};
+		this["get"]=()=>{
+			return message;
+		}
+	}
 	function Print()
 	{
 		this["x"]=200;
@@ -90,16 +144,13 @@ function LOADING()
 		this["lw"]=[3,1];
 		this["font"]=["30px Arial","15px Arial"];
 	}
-	let context;
-	let message=`載入中`;
-	let counts=0;
-	let t_lod;
-	const print=new Print();
+	const print=Object.freeze(new Print());
+	const message=Object.freeze(new Message());
 	this["setContext"]=con=>{
 		context=con;
 	}
-	this["message"]=mes=>{
-		typeof(mes)=="string"?message=mes:message=`載入中`;
+	this["message"]=()=>{
+		return message;
 	}
 	this["overloading"]=()=>{
 		context.clearRect(0,0,750,420);
@@ -143,7 +194,7 @@ function LOADING()
 			}
 			context.lineWidth=print.lw[1];
 			context.font=print.font[1];
-			context.fillText(message,print.x+print.r*2,print.y+3*print.r/2);
+			context.fillText(message.get(),print.x+print.r*2,print.y+3*print.r/2);
 			counts=counts==5?0:counts+1;
 		},60);
 	};

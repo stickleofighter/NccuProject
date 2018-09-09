@@ -85,7 +85,7 @@ function getData()
 	let vid_url;
 	const dbget=()=>{
 		loading.startloading();
-		loading.message(`正在連線資料庫`);
+		//loading.message(`正在連線資料庫`);
 		return new Promise((res,rej)=>{			
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
@@ -98,7 +98,7 @@ function getData()
 	};
 	const dataget=()=>{
 		console.log(`開始取得資料`);
-		loading.message(`正在獲取資料`);
+		//loading.message(`正在獲取資料`);
 		return new Promise((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
 			let objectStore=transaction.objectStore("dataSet");
@@ -111,7 +111,7 @@ function getData()
 				vid_url=e.target.result.url;
 			};
 			transaction.oncomplete=e=>{
-				loading.message(`已獲取資料`);
+				//loading.message(`已獲取資料`);
 				res();
 			};
 			transaction.onerror=e=>{
@@ -120,7 +120,7 @@ function getData()
 		});
 	};
 	const videoMake=()=>{
-		loading.message(`正在載入影片`);
+		//loading.message(`正在載入影片`);
 		return new Promise((res,rej)=>{
 			const vid=$("<video/>")
 				.attr("width","750")
@@ -142,7 +142,7 @@ function getData()
 		});
 	};
 	const ObjConstruct=()=>{
-		loading.message(`正在建立遊戲物件`);
+		//loading.message(`正在建立遊戲物件`);
 		skips=Object.freeze(new BUTTON(skip_btn[0]));
 		voiceConstruct();
 		SourceLoadCheck(SourceOnload);
