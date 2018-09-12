@@ -1,6 +1,6 @@
 const ImageArray=new Array();
-var bgm;
-var voices=new Array();
+let bgm;
+let voices=new Array();
 const loading=Object.freeze(new LOADING());
 
 function areaCheck(Mouse,target,bs)

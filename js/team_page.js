@@ -1,12 +1,12 @@
 var ctouchcheck;
 var ctcrk;
 var cbackground;
-var cbg;
-var cbutton;
-var cbtn;
+let cbg;
+let cbutton;
+let cbtn;
 
-var bg;
-var back_btn;
+let bg;
+let back_btn;
 
 function touchEventHandler()
 {

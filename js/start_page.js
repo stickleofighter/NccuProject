@@ -1,12 +1,12 @@
-var ctouchcheck;
-var ctcrk;
-var cbackground;
-var cbg;
-var cbutton;
-var cbtn;
+let ctouchcheck;
+let ctcrk;
+let cbackground;
+let cbg;
+let cbutton;
+let cbtn;
 
-var bg;
-var buttons=new Array();
+let bg;
+let buttons=new Array();
 
 
 function touchEventHandler()

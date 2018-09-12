@@ -1,7 +1,7 @@
-var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexed;
-var request;
-var db;
-var xhr;
+let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexed;
+let request;
+let db;
+let xhr;
 
 window.onload=()=>{
 	DBSetValue().then(xhrGet).then(dataInput).then(inputEnd).catch(Error);

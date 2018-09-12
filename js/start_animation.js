@@ -1,10 +1,10 @@
-var ctouchcheck;
-var ctcrk;
-var cbutton;
-var cbtn;
+let ctouchcheck;
+let ctcrk;
+let cbutton;
+let cbtn;
 
-var skips;
-var startVideo;
+let skips;
+let startVideo;
 
 function touchEventHandler()
 {
