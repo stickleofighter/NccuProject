@@ -63,6 +63,8 @@ function BUTTON(btn)
 	const xx=[btn.x,btn.x+(ww[0]-ww[1])/2,btn.x-(ww[2]-ww[0])/2];
 	const yy=[btn.y,btn.y+(hh[0]-hh[1])/2,btn.y-(hh[2]-hh[0])/2];
 	let PlayOnce=true;
+	let isDown=false;
+	let isClick=true;
 	this["w"]=i=>ww[i];
 	this["h"]=i=>hh[i];
 	this["x"]=i=>xx[i];
@@ -71,14 +73,38 @@ function BUTTON(btn)
 		if(ar.length===0)return PlayOnce;
 		else ar.length==1&&typeof(ar[0])=="boolean"?PlayOnce=ar[0]:PlayOnce=true;
 	};
+	this["isDown"]=(...ar)=>{
+		if(ar.length===0)return isDown;
+		else ar.length==1&&typeof(ar[0])=="boolean"?PlayOnce=ar[0]:isDown=true;
+	};
+	this["isClick"]=(...ar)=>{
+		if(ar.length===0)return isClick;
+		else ar.length==1&&typeof(ar[0])=="boolean"?PlayOnce=ar[0]:isClick=true;
+	};
 	for(let i=0;i<num;i++)
 	{
-		this[`draw${i+1}`]=(context,bs)=>{
-			context.clearRect(xx[2],yy[2],ww[2],hh[2]);
-			context.drawImage(Images[i],xx[bs],yy[bs],ww[bs],hh[bs]);
+		this[`draw${i+1}`]=(context,bs,x_fix=0,y_fix=0)=>{
+			context.clearRect(xx[2]+x_fix,yy[2]+y_fix,ww[2],hh[2]);
+			context.drawImage(Images[i],xx[bs]+x_fix,yy[bs]+y_fix,ww[bs],hh[bs]);
 		};
 	}
+	this["clear"]=(context,x_fix=0,y_fix=0)=>{
+		context.clearRect(xx[2]+x_fix,yy[2]+y_fix,ww[2],hh[2]);
+	}
 }
+function NOIMGBOX(box)
+{
+	const w=box.w;
+	const h=box.h;
+	const x=box.x;
+	const y=box.y;
+	this["w"]=()=>w;
+	this["h"]=()=>h;
+	this["x"]=()=>x;
+	this["y"]=()=>y;
+	
+}
+
 function LOADING()
 {
 	const loadingState=[

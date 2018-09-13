@@ -8,6 +8,10 @@
 			"url":"media/pic/main_page/team_page.png",
 			"x":0,"y":0,"w":750,"h":420
 		},
+		"set":{
+			"url":"media/pic/main_page/setting_page.png",
+			"x":0,"y":0,"w":750,"h":420
+		},
 		"kind": "bg"
 	},
 	"button":{
@@ -56,9 +60,44 @@
 					"media/pic/main_page/back_2.png"
 				],
 				"x": 575,"y": 300,"w": 68,"h": 44
+			},
+			{
+				"url":[
+					"media/pic/main_page/m0.png",
+					"media/pic/main_page/m1.png",
+					"media/pic/main_page/m2.png",
+					"media/pic/main_page/m3.png",
+					"media/pic/main_page/m4.png",
+					"media/pic/main_page/m5.png",
+					"media/pic/main_page/m6.png",
+					"media/pic/main_page/m7.png",
+					"media/pic/main_page/m8.png",
+					"media/pic/main_page/m9.png",
+					"media/pic/main_page/m10.png"
+				],
+				"x":350 ,"y":268,"w":45 ,"h":34
+			},
+			{
+				"url":["media/pic/main_page/check.png"],
+				"x":211 ,"y":170,"w":46 ,"h":36
+			},
+			{
+				"url":["media/pic/main_page/check.png"],
+				"x":376 ,"y":170,"w":46 ,"h":36
 			}
 		],
 		"kind": "button"
+	},
+	"noimgbox":{
+		"set":[
+			{
+				"x":212 ,"y":198, "w":28, "h":28
+			},
+			{
+				"x":378, "y":198, "w":28, "h":28
+			}
+		],
+		"kind":"noimgbox"
 	},
 	"sound":{
 		"bgm":{
