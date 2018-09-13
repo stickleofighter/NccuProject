@@ -3,7 +3,7 @@ let bgm;
 let voices=new Array();
 const loading=Object.freeze(new LOADING());
 
-function areaCheck(Mouse,target,bs)
+function areaCheck(Mouse,target,bs=0)
 {
 	return Mouse.x()>=target.x(bs)&&Mouse.x()<=(target.x(bs)+target.w(bs))&&Mouse.y()>=target.y(bs)&&Mouse.y()<=(target.y(bs)+target.h(bs));
 }

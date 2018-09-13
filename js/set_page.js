@@ -183,9 +183,6 @@ function SourceOnload()
 {
 	loading.overloading();
 	bg.draw(cbg);
-	checks.forEach(v=>{
-		v.draw1(cbtn,0);
-	});
 	if(bgm.muted()) checks[0].isClick(false);
 	else checks[0].draw1(cbtn,0);
 	if(voices[0].muted()) checks[1].isClick(false);
