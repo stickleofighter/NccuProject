@@ -15,6 +15,8 @@ function voiceControl(url)
 			playPromise.then(()=>{voice.pause();}).catch(e=>console.log(e));
 		}
 	}
+	this["muted"]=()=>voice.muted;
+	this["volume"]=()=>voice.volume;
 	this["muteswitch"]=()=>{
 		voice.muted=!voice.muted;
 	};
@@ -31,7 +33,7 @@ function voiceControl(url)
 	this["loop"]=(tf=true)=>{
 		voice.loop=tf;
 	};
-	this["volume"]=(num=100)=>{
+	this["volumeSet"]=(num=100)=>{
 		voice.volume=num*0.005;
 	};
 	this["ended"]=()=>voice.ended;

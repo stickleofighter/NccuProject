@@ -186,6 +186,10 @@ function SourceOnload()
 	checks.forEach(v=>{
 		v.draw1(cbtn,0);
 	});
+	if(bgm.muted()) checks[0].isClick(false);
+	else checks[0].draw1(cbtn,0);
+	if(voices[0].muted()) checks[1].isClick(false);
+	else checks[1].draw1(cbtn,0);
 	volControl.draw1(cbtn,0);
 	backs.draw1(cbtn,0);
 	
