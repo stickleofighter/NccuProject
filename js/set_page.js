@@ -48,20 +48,30 @@ function touchEventHandler()
 		else backs.draw1(cbtn,0);
 		if(areaCheck(Mpos,checkBoxs[0]))
 		{
-			if(checks[0].isCheck())
+			if(checks[0].isClick())
 			{
+				checks[0].isClick(false);
 				checks[0].clear();
 			}
-			else checks[0].draw1(cbtn,0);
+			else 
+			{
+				checks[0].isClick(true);
+				checks[0].draw1(cbtn,0);
+			}
 			bgm.muteswitch();
 		}
 		if(areaCheck(Mpos,checkBoxs[1]))
 		{
-			if(checks[1].isCheck())
+			if(checks[1].isClick())
 			{
+				checks[1].isClick(false);
 				checks[1].clear();
 			}
-			else checks[1].draw1(cbtn,0);
+			else 
+			{
+				checks[1].isClick(true);
+				checks[1].draw1(cbtn,0);
+			}
 			voices.forEach(v=>{
 				v.muteswitch();
 			})
