@@ -179,3 +179,8 @@ function SourceOnload()
 	
 	touchEventHandler();
 }
+
+$(document).ready(()=>{
+	canvasContext();
+	getData();
+});
