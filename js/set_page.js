@@ -112,14 +112,14 @@ function getData()
 			request=indexedDB.open("MonopolyLearnData",1);
 			request.onsuccess=e=>{
 				db=e.target.result;
-				//console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
+				console.log(`indexedDB資料庫MonopolyLearnData打開成功`);
 				res();
 			}
 			request.onerror=e=>{rej(e.target.errorCode);}
 		});
 	};
 	const dataget=()=>{
-		//console.log(`開始取得資料`);
+		console.log(`開始取得資料`);
 		loading.message().next();
 		return new Promise((res,rej)=>{
 			let transaction=db.transaction(["dataSet"],"readwrite");
@@ -147,6 +147,7 @@ function getData()
 		});
 	};
 	const ObjConstruct=()=>{
+		console.log('物件...')
 		loading.message().next().next();
 		bg=Object.freeze(new BG(bg_img));
 		backs=Object.freeze(new BUTTON(back_img));
