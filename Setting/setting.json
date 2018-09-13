@@ -79,11 +79,11 @@
 			},
 			{
 				"url":["media/pic/main_page/check.png"],
-				"x":211 ,"y":170,"w":46 ,"h":36
+				"x":211 ,"y":170,"w":36 ,"h":46
 			},
 			{
 				"url":["media/pic/main_page/check.png"],
-				"x":376 ,"y":170,"w":46 ,"h":36
+				"x":376 ,"y":170,"w":36 ,"h":46
 			}
 		],
 		"kind": "button"

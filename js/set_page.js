@@ -51,7 +51,7 @@ function touchEventHandler()
 			if(checks[0].isClick())
 			{
 				checks[0].isClick(false);
-				checks[0].clear();
+				checks[0].clear(cbtn);
 			}
 			else 
 			{
@@ -65,7 +65,7 @@ function touchEventHandler()
 			if(checks[1].isClick())
 			{
 				checks[1].isClick(false);
-				checks[1].clear();
+				checks[1].clear(cbtn);
 			}
 			else 
 			{
