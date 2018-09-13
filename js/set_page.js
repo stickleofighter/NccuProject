@@ -135,7 +135,7 @@ function getData()
 				volControl_img=e.target.result.teamset[1];
 				check_img=e.target.result.teamset.slice(2,4);
 			};
-			req3.onsuccess=e=>{{
+			req3.onsuccess=e=>{
 				checkBox_box=e.target.result.set;
 			}
 			transaction.oncomplete=e=>{
