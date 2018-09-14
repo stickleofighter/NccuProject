@@ -34,6 +34,12 @@ function touchEventHandler()
 			backs.draw1(cbtn,0);
 			backs.PlayOnce(true);
 		}
+		if(volControl.isDown())
+		{
+			volControl.clear(cbtn,lastMpos.x);
+			lastMpos=Mpos;
+			volControl.draw1(cbtn,Mpos.x);
+		}
 	};
 	const MouseDownHandler=e=>
 	{
@@ -79,11 +85,13 @@ function touchEventHandler()
 			});
 			voices[1].play();
 		}
+		if(areaCheck(Mpos,volControl,0)) volControl.isDown(true);
 	};
 	const MouseUpHandler=e=>
 	{
 		ctouchcheck.on("mousemove",MouseMoveHandler);
 		if(areaCheck(Mpos,backs,0)) backs.draw1(cbtn,0);
+		volControl.isDown(false);
 	};
 	const MouseClickHandler=e=>
 	{
