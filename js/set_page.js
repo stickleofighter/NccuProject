@@ -39,7 +39,7 @@ function touchEventHandler()
 		if(volControl.isDown())
 		{
 			if(volControl.x!=Mpos.x)volControl.sx(Mpos.x-volControl.w/2);
-			else volControl.sx(parseInt(volControl.x)+parseInt(Mpos.x-Mpos.prex);)
+			else volControl.sx(parseInt(volControl.x)+parseInt(Mpos.x-Mpos.prex));
 			volControl.sx(volControl.x>volControl.limit.right?volControl.limit.right:volControl.x);
 			volControl.sx(volControl.x<volControl.limit.left?volControl.limit.left:volControl.x);
 			drawMusic();
