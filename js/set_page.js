@@ -38,7 +38,7 @@ function touchEventHandler()
 		}
 		if(volControl.isDown())
 		{
-			console.log(`${Mpos.x-volControl.w(0)/2},${parseInt(volControl.x(0))+parseInt(Mpos.x-Mpos.prex)}`)
+			console.log(`${Mpos.x},${volControl.w(0)/2},${parseInt(volControl.x(0)),${parseInt(Mpos.x-Mpos.prex)}`)
 			if(volControl.x(0)!=Mpos.x)volControl.sx(Mpos.x-volControl.w(0)/2);
 			else volControl.sx(parseInt(volControl.x(0))+parseInt(Mpos.x-Mpos.prex));
 			volControl.sx(volControl.x(0)>volControl.limit.right?volControl.limit.right:volControl.x(0));
@@ -81,6 +81,7 @@ function touchEventHandler()
 				
 			}
 			bgm.muteswitch();
+			voices[1].stop();
 			voices[1].play();
 		}
 		if(areaCheck(Mpos,checkBoxs[1]))
@@ -98,6 +99,7 @@ function touchEventHandler()
 			voices.forEach(v=>{
 				v.muteswitch();
 			});
+			voices[1].stop();
 			voices[1].play();
 		}
 		if(areaCheck(Mpos,volControl,0)) {
