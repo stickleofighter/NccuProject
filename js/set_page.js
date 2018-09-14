@@ -19,7 +19,7 @@ function touchEventHandler()
 		{
 			let d_count=0;
 			cbtn.clearRect(190,268,400,40);
-			console.log('Math.ceil((volControl.x()- volControl.limit.left)/140)');
+			console.log(Math.ceil((volControl.x()- volControl.limit.left)/140));
 			if(volControl.x()==volControl.limit.left) d_count=1;
 			else if(volControl.x()==volControl.limit.right) d_count=11;
 			else d_count=Math.ceil((volControl.x()- volControl.limit.left)/140)+1;
