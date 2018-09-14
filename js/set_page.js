@@ -38,9 +38,9 @@ function touchEventHandler()
 		}
 		if(volControl.isDown())
 		{
-			console.log(`${Mpos.x},${volControl.w(0)/2},${parseInt(volControl.x(0))},${parseInt(Mpos.x-Mpos.prex)}`)
-			if(volControl.x(0)!=Mpos.x)volControl.sx(Mpos.x-volControl.w(0)/2);
-			else volControl.sx(parseInt(volControl.x(0))+parseInt(Mpos.x-Mpos.prex));
+			console.log(`${Mpos.x()},${volControl.w(0)/2},${parseInt(volControl.x(0))},${parseInt(Mpos.x()-Mpos.prex())}`)
+			if(volControl.x(0)!=Mpos.x())volControl.sx(Mpos.x()-volControl.w(0)/2);
+			else volControl.sx(parseInt(volControl.x(0))+parseInt(Mpos.x()-Mpos.prex()));
 			volControl.sx(volControl.x(0)>volControl.limit.right?volControl.limit.right:volControl.x(0));
 			volControl.sx(volControl.x(0)<volControl.limit.left?volControl.limit.left:volControl.x(0));
 			drawMusic();
