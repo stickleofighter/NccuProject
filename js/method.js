@@ -72,7 +72,7 @@ function BUTTON(btn)
 		v.src=btn.url[i];
 		ImageArray.push(v);}
 		);
-	l ww=[btn.w,btn.w*0.9,btn.w*1.1];
+	const ww=[btn.w,btn.w*0.9,btn.w*1.1];
 	const hh=[btn.h,btn.h*0.9,btn.h*1.1];
 	const xx=[btn.x,btn.x+(ww[0]-ww[1])/2,btn.x-(ww[2]-ww[0])/2];
 	const yy=[btn.y,btn.y+(hh[0]-hh[1])/2,btn.y-(hh[2]-hh[0])/2];
