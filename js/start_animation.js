@@ -8,10 +8,9 @@ let startVideo;
 
 function touchEventHandler()
 {
-	let Mpos;
 	const MouseMoveHandler=e=>
 	{
-		Mpos=new getMousePos(e);
+		Mpos.getMousePos(e);
 		if(areaCheck(Mpos,skips,0))
 		{
 			 skips.draw1(cbtn,2);
@@ -30,7 +29,7 @@ function touchEventHandler()
 	};
 	const MouseDownHandler=e=>
 	{
-		Mpos=new getMousePos(e);
+		Mpos.getMousePos(e);
 		if(areaCheck(Mpos,skips,0))
 		{
 			ctouchcheck.off("mousemove",MouseMoveHandler);
@@ -47,7 +46,7 @@ function touchEventHandler()
 	};
 	const MouseClickHandler=e=>
 	{
-		Mpos=new getMousePos(e);
+		Mpos.getMousePos(e);
 		if(areaCheck(Mpos,skips,0))document.location.replace("start_page.html");
 	};
 	const MouseOutHandler=MouseUpHandler;

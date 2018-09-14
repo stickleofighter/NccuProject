@@ -1,6 +1,7 @@
 const ImageArray=new Array();
 let bgm;
 let voices=new Array();
+const Mpos=new getMousePos();
 const loading=Object.freeze(new LOADING());
 
 function areaCheck(Mouse,target,bs=0)
@@ -10,11 +11,6 @@ function areaCheck(Mouse,target,bs=0)
 function haveChar(check_arr,check)
 {	
 	return check_arr.some(c=>c==check);
-}
-function getMousePos(e)
-{
-	this["x"]=()=>e.offsetX;
-	this["y"]=()=>e.offsetY;
 }
 function voiceConstruct()
 {
@@ -41,7 +37,25 @@ function SourceLoadCheck(callback)
 	}).catch(e=>{console.log(e);});
 }
 
-
+function getMousePos()
+{
+	let x=e.offsetX;
+	let y=e.offsetY;
+	let pre_x;
+	let pre_y;
+	this["x"]=()=>x;
+	this["y"]=()=>y;
+	this["prex"]=()=>pre_x;
+	this["prey"]=()=>pre_y;
+	this["getMousePos"]=e=>{
+		x=e.offsetX;
+		y=e.offsetY;
+	};
+	this["getPreMousePos"]=e=>{
+		pre_x=x;
+		pre_y=y;
+	}
+}
 function BG(bg)
 {
 	const Images=new Image();

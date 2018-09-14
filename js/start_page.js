@@ -11,10 +11,9 @@ let buttons=new Array();
 
 function touchEventHandler()
 {
-	let Mpos;
 	const MouseMoveHandler=e=>
 	{
-		Mpos=new getMousePos(e);
+		Mpos.getMousePos(e);
 		for(let i in buttons)
 		{
 			if(areaCheck(Mpos,buttons[i],0))
@@ -36,7 +35,7 @@ function touchEventHandler()
 	};
 	const MouseDownHandler=e=>
 	{
-		Mpos=new getMousePos(e);
+		Mpos.getMousePos(e);
 		for(let i in buttons)
 		{
 			if(areaCheck(Mpos,buttons[i],0))
@@ -59,7 +58,7 @@ function touchEventHandler()
 	};
 	const MouseClickHandler=e=>
 	{
-		Mpos=new getMousePos(e);
+		Mpos.getMousePos(e);
 		if(areaCheck(Mpos,buttons[1],0)) document.location.replace("set_page.html");
 		if(areaCheck(Mpos,buttons[2],0)) document.location.replace("team_page.html");
 	};
