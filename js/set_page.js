@@ -17,8 +17,12 @@ function touchEventHandler()
 	{
 		const drawMusic=()=>
 		{
+			let d_count;
 			cbtn.clearRect(190,268,400,40);
-			volControl.draw1(cbtn,0);
+			if(volControl.x()==volControl.limit.left) d_count=1;
+			else if(volControl.x()==volControl.limit.right) d_count=11;
+			else d_count=Math.ceil((volControl.x()- volControl.limit.left)/140)+1;
+			volControl[`draw${d_count}`](cbtn,0);
 		}
 		Mpos.getMousePos(e);
 		if(areaCheck(Mpos,backs,0))
@@ -38,7 +42,6 @@ function touchEventHandler()
 		}
 		if(volControl.isDown())
 		{
-			console.log(`${Mpos.x()},${volControl.w(0)/2},${parseInt(volControl.x(0))},${parseInt(Mpos.x()-Mpos.prex())}`)
 			if(volControl.x(0)!=Mpos.x())volControl.sx(Mpos.x()-volControl.w(0)/2);
 			else volControl.sx(parseInt(volControl.x(0))+parseInt(Mpos.x()-Mpos.prex()));
 			volControl.sx(volControl.x(0)>volControl.limit.right?volControl.limit.right:volControl.x(0));
