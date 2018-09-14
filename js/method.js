@@ -83,6 +83,10 @@ function BUTTON(btn)
 	this["h"]=i=>hh[i];
 	this["x"]=i=>xx[i];
 	this["y"]=i=>yy[i];
+	this["sx"]=v=>{xx[0]=v};
+	this["sy"]=v=>{yy[0]=v};
+	this["sw"]=v=>{ww[0]=v};
+	this["sh"]=v=>{hh[0]=v};
 	this["PlayOnce"]=(...ar)=>{
 		if(ar.length===0)return PlayOnce;
 		else ar.length==1&&typeof(ar[0])=="boolean"?PlayOnce=ar[0]:PlayOnce=true;

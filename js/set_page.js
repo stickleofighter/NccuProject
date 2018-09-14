@@ -11,12 +11,15 @@ let checkBoxs=new Array();
 let backs;
 let volControl;
 
-let lastMpos;
-
 function touchEventHandler()
 {
 	const MouseMoveHandler=e=>
 	{
+		const drawMusic=()=>
+		{
+			cbtn.clearRect(190,268,400,40);
+			volControl.draw1(cbtn,0);
+		}
 		Mpos.getMousePos(e);
 		if(areaCheck(Mpos,backs,0))
 		{
@@ -35,10 +38,22 @@ function touchEventHandler()
 		}
 		if(volControl.isDown())
 		{
-			volControl.clear(cbtn,lastMpos.x);
-			lastMpos=Mpos;
-			volControl.draw1(cbtn,Mpos.x);
+			if(volControl.x!=Mpos.x)volControl.sx(Mpos.x-volControl.w/2);
+			else volControl.sx(parseInt(volControl.x)+parseInt(Mpos.x-Mpos.prex);)
+			volControl.sx(volControl.x>volControl.limit.right?volControl.limit.right:volControl.x);
+			volControl.sx(volControl.x<volControl.limit.left?volControl.limit.left:volControl.x);
+			drawMusic();
+			Mpos.getPreMousePos(e);
 		}
+		/*
+		if(MUSICVOL.mx!=MOUSE.mx)MUSICVOL.mx=MOUSE.mx-MUSICVOL.mw/2;
+	else MUSICVOL.mx=parseInt(MUSICVOL.mx)+parseInt(MOUSE.mx-MOUSE.mx_pre);
+	MUSICVOL.mx=MUSICVOL.mx>MUSICVOL.mlr?MUSICVOL.mlr:MUSICVOL.mx;
+	MUSICVOL.mx=MUSICVOL.mx<MUSICVOL.mll?MUSICVOL.mll:MUSICVOL.mx;
+	drawmusic();
+	MOUSE.getpremousexy(); 
+	cbtn.clearRect(380,536,800,80);
+		*/
 	};
 	const MouseDownHandler=e=>
 	{
@@ -85,8 +100,9 @@ function touchEventHandler()
 			voices[1].play();
 		}
 		if(areaCheck(Mpos,volControl,0)) {
+			
 			volControl.isDown(true);
-			lastMpos=Mpos;
+			Mpos.getPreMousePos(e);
 		}
 	};
 	const MouseUpHandler=e=>
@@ -174,7 +190,13 @@ function getData()
 		loading.message().next().next();
 		bg=Object.freeze(new BG(bg_img));
 		backs=Object.freeze(new BUTTON(back_img));
-		volControl=Object.freeze(new BUTTON(volControl_img));
+		volControl=new BUTTON(volControl_img);
+		volControl.limit={
+			left:195,
+			right:510,
+			bottom:268
+		};
+		volControl=Object.freeze(volControl);
 		check_img.forEach(v=>{
 			checks.push(Object.freeze(new BUTTON(v)));
 		});
