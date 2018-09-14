@@ -19,10 +19,10 @@ function touchEventHandler()
 		{
 			let d_count=0;
 			cbtn.clearRect(190,268,400,40);
-			console.log(`${volControl.x()}, ${volControl.limit.left}`);
+			console.log(Math.ceil((volControl.x(0)- volControl.limit.left)/140)+1);
 			if(volControl.x()==volControl.limit.left) d_count=1;
 			else if(volControl.x()==volControl.limit.right) d_count=11;
-			else d_count=Math.ceil((volControl.x()- volControl.limit.left)/140)+1;
+			else d_count=Math.ceil((volControl.x(0)- volControl.limit.left)/140)+1;
 			volControl[`draw1`](cbtn,0);
 		};
 		Mpos.getMousePos(e);
