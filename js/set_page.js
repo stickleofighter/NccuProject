@@ -38,10 +38,10 @@ function touchEventHandler()
 		}
 		if(volControl.isDown())
 		{
-			if(volControl.x()!=Mpos.x)volControl.sx(Mpos.x-volControl.w()/2);
-			else volControl.sx(parseInt(volControl.x())+parseInt(Mpos.x-Mpos.prex));
-			volControl.sx(volControl.x()>volControl.limit.right?volControl.limit.right:volControl.x());
-			volControl.sx(volControl.x()<volControl.limit.left?volControl.limit.left:volControl.x());
+			if(volControl.x(0)!=Mpos.x)volControl.sx(Mpos.x-volControl.w(0)/2);
+			else volControl.sx(parseInt(volControl.x(0))+parseInt(Mpos.x-Mpos.prex));
+			volControl.sx(volControl.x(0)>volControl.limit.right?volControl.limit.right:volControl.x(0));
+			volControl.sx(volControl.x(0)<volControl.limit.left?volControl.limit.left:volControl.x(0));
 			drawMusic();
 			Mpos.getPreMousePos(e);
 		}
