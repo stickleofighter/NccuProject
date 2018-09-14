@@ -39,8 +39,8 @@ function SourceLoadCheck(callback)
 
 function getMousePos()
 {
-	let x=e.offsetX;
-	let y=e.offsetY;
+	let x;
+	let y;
 	let pre_x;
 	let pre_y;
 	this["x"]=()=>x;
