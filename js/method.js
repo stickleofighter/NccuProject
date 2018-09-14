@@ -75,11 +75,11 @@ function BUTTON(btn)
 	};
 	this["isDown"]=(...ar)=>{
 		if(ar.length===0)return isDown;
-		else ar.length==1&&typeof(ar[0])=="boolean"?PlayOnce=ar[0]:isDown=true;
+		else ar.length==1&&typeof(ar[0])=="boolean"?isDown=ar[0]:isDown=true;
 	};
 	this["isClick"]=(...ar)=>{
 		if(ar.length===0)return isClick;
-		else ar.length==1&&typeof(ar[0])=="boolean"?PlayOnce=ar[0]:isClick=true;
+		else ar.length==1&&typeof(ar[0])=="boolean"?isClick=ar[0]:isClick=true;
 	};
 	for(let i=0;i<num;i++)
 	{

@@ -57,9 +57,10 @@ function touchEventHandler()
 			{
 				checks[0].isClick(true);
 				checks[0].draw1(cbtn,0);
+				
 			}
 			bgm.muteswitch();
-			voices[2].play();
+			voices[1].play();
 		}
 		if(areaCheck(Mpos,checkBoxs[1]))
 		{
@@ -76,7 +77,7 @@ function touchEventHandler()
 			voices.forEach(v=>{
 				v.muteswitch();
 			});
-			voices[2].play();
+			voices[1].play();
 		}
 	};
 	const MouseUpHandler=e=>
